@@ -127,7 +127,7 @@ module.exports = async (client, config) => {
         case "ping":
           {
             const sent = await interaction.reply({ content: 'thinking...', fetchReply: true, ephemeral: true });
-            await wait(4000);
+            await wait(3000);
             interaction.editReply({
               content: `Roundtrip latency: ${sent.createdTimestamp - interaction.createdTimestamp}ms`,
               ephemeral: true
