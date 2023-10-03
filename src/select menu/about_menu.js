@@ -1,4 +1,8 @@
-const { MessageActionRow, MessageButton, MessageSelectMenu } = require("discord.js");
+const {
+  MessageActionRow,
+  MessageButton,
+  MessageSelectMenu,
+} = require("discord.js");
 const fieldsText = require("../assest/fieldsText.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
@@ -9,7 +13,6 @@ const cooldown = new Set();
 require("moment-duration-format");
 
 module.exports = async (client, config) => {
-
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -22,7 +25,7 @@ module.exports = async (client, config) => {
               `\x1b[31m 〢`,
               `\x1b[30m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m${interaction.user.username} USED`,
-              `\x1b[35m About Button`
+              `\x1b[35m About Button`,
             );
 
             const aboutmenu = new MessageActionRow().addComponents(
@@ -33,7 +36,7 @@ module.exports = async (client, config) => {
                   {
                     label: "About Sun Community",
                     value: "ASC",
-                    emoji: "emojis.aboutSun",
+                    emoji: emojis.aboutSun,
                   },
                   {
                     label: "Hall of fame for tourney wins",
@@ -55,7 +58,7 @@ module.exports = async (client, config) => {
                     value: "OP",
                     emoji: emojis.partner,
                   },
-                ])
+                ]),
             ); // End of .addComponents()
             await interaction.reply({
               embeds: [
@@ -85,15 +88,15 @@ module.exports = async (client, config) => {
           }
           client.on("interactionCreate", async (interaction) => {
             if (interaction.isSelectMenu()) {
-
               let choice = interaction.values[0];
               if (choice == "ASC") {
-
                 const controll = new MessageActionRow().addComponents([
                   new MessageButton()
                     .setStyle(5)
                     .setLabel(`Youtube`)
-                    .setURL(`https://www.youtube.com/channel/UCxtjE4pbP7O3RwKm5yyhltg`)
+                    .setURL(
+                      `https://www.youtube.com/channel/UCxtjE4pbP7O3RwKm5yyhltg`,
+                    )
                     .setEmoji(emojis.youtube),
                   new MessageButton()
                     .setStyle(5)
@@ -138,7 +141,7 @@ module.exports = async (client, config) => {
                         value: "OP",
                         emoji: emojis.partner,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
 
                 return await interaction.update({
@@ -186,7 +189,7 @@ module.exports = async (client, config) => {
                         value: "OP",
                         emoji: emojis.partner,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
 
                 return await interaction.update({
@@ -234,7 +237,7 @@ module.exports = async (client, config) => {
                         value: "OP",
                         emoji: emojis.partner,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
                 return await interaction.update({
                   embeds: [
@@ -281,7 +284,7 @@ module.exports = async (client, config) => {
                         value: "OP",
                         emoji: emojis.partner,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
 
                 return await interaction.update({
@@ -329,7 +332,7 @@ module.exports = async (client, config) => {
                         default: true,
                         emoji: emojis.partner,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
 
                 return await interaction.update({
