@@ -10,13 +10,11 @@ console.log(
     ░ ░  ░  ░   ░  ▓██ ░▒░   ░   ░   ▒   ▒▒ ░░  ░      ░ ░ ░  ░  ░▒ ░ ▒░
       ░   ░ ░   ░  ▒ ▒ ░░  ░ ░   ░   ░   ▒   ░      ░      ░     ░░   ░ 
       ░  ░      ░  ░ ░           ░       ░  ░       ░      ░  ░   ░     
- `
+ `,
 );
 console.log(
-  
-  `|                          PARFAIT™ DEV VERSION                       |`
+  `                           PARFAIT™ DEV VERSION                        `,
 );
 console.log(
-  
-  `|                               SYSTEM LOG                            |`
+  `                                SYSTEM LOG                             `,
 );
