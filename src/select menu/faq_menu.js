@@ -10,7 +10,6 @@ const cooldown = new Set();
 require("moment-duration-format");
 
 module.exports = async (client, config) => {
-
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -23,7 +22,7 @@ module.exports = async (client, config) => {
               `\x1b[31m 〢`,
               `\x1b[30m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m${interaction.user.username} USED`,
-              `\x1b[35m FAQ Button`
+              `\x1b[35m FAQ Button`,
             );
 
             const faqmenu = new MessageActionRow().addComponents(
@@ -56,7 +55,7 @@ module.exports = async (client, config) => {
                     value: "parfaitbot",
                     emoji: emojis.faq,
                   },
-                ])
+                ]),
             ); // End of .addComponents()
             await interaction.reply({
               embeds: [
@@ -93,7 +92,6 @@ module.exports = async (client, config) => {
             if (interaction.isSelectMenu()) {
               let choice = interaction.values[0];
               if (choice == "applying") {
-
                 const faqmenu = new MessageActionRow().addComponents(
                   new MessageSelectMenu()
                     .setCustomId("faq-menu")
@@ -125,8 +123,15 @@ module.exports = async (client, config) => {
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
+
+                console.log(
+                  `\x1b[31m 〢`,
+                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m${interaction.user.username} WATCH`,
+                  `\x1b[35m Appyling Category`,
+                );
 
                 return await interaction.update({
                   embeds: [
@@ -210,8 +215,15 @@ module.exports = async (client, config) => {
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
+
+                console.log(
+                  `\x1b[31m 〢`,
+                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m${interaction.user.username} WATCH`,
+                  `\x1b[35m Accepted Applications Category`,
+                );
 
                 return await interaction.update({
                   embeds: [
@@ -280,8 +292,16 @@ module.exports = async (client, config) => {
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
+
+                console.log(
+                  `\x1b[31m 〢`,
+                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m${interaction.user.username} WATCH`,
+                  `\x1b[35m Rejected Applications Category`,
+                );
+
                 return await interaction.update({
                   embeds: [
                     {
@@ -344,8 +364,15 @@ module.exports = async (client, config) => {
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
+
+                console.log(
+                  `\x1b[31m 〢`,
+                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m${interaction.user.username} WATCH`,
+                  `\x1b[35m Tryout Process Category`,
+                );
 
                 return await interaction.update({
                   embeds: [
@@ -424,8 +451,15 @@ module.exports = async (client, config) => {
                         default: true,
                         emoji: emojis.faq,
                       },
-                    ])
+                    ]),
                 ); // End of .addComponents()
+
+                console.log(
+                  `\x1b[31m 〢`,
+                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m${interaction.user.username} WATCH`,
+                  `\x1b[35m Parfait Bot Category`,
+                );
 
                 return await interaction.update({
                   embeds: [
