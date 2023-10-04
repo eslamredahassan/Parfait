@@ -5,14 +5,6 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-const config = require("../config");
-const messages = require("../assest/messages.js");
-const responses = require("../assest/responses.js");
-const interface = require("../assest/interface.js");
-const fieldsText = require("../assest/fieldsText.js");
-const members = require("../assest/members.js");
-const banners = require("../assest/banners.js");
-const errors = require("../assest/errors.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
 
