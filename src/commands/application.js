@@ -199,7 +199,7 @@ module.exports = async (client, config) => {
             });
             await wait(3000);
             interaction.editReply({
-              content: `Roundtrip latency: ${
+              content: `My latency: ${
                 sent.createdTimestamp - interaction.createdTimestamp
               }ms`,
               ephemeral: true,
