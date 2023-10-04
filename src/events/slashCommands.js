@@ -27,6 +27,11 @@ module.exports = async (client, config) => {
         type: "CHAT_INPUT",
       },
       {
+        name: "uptime",
+        description: `[Dev] Check Parfait Uptime`,
+        type: "CHAT_INPUT",
+      },
+      {
         name: "mini-games",
         description: `[Dev] Mini Games Menu`,
         type: "CHAT_INPUT",
