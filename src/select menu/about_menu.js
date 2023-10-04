@@ -25,7 +25,7 @@ module.exports = async (client, config) => {
           {
             console.log(
               `\x1b[31m 〢`,
-              `\x1b[30m ${moment(Date.now()).format("lll")}`,
+              `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m${interaction.user.username} USED`,
               `\x1b[35m About Button`,
             );
@@ -148,7 +148,7 @@ module.exports = async (client, config) => {
 
                 console.log(
                   `\x1b[31m 〢`,
-                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m${interaction.user.username} WATCH`,
                   `\x1b[35m About Sun&CO Category`,
                 );
@@ -203,7 +203,7 @@ module.exports = async (client, config) => {
 
                 console.log(
                   `\x1b[31m 〢`,
-                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m${interaction.user.username} WATCH`,
                   `\x1b[35m Hall of fame Category`,
                 );
@@ -258,7 +258,7 @@ module.exports = async (client, config) => {
 
                 console.log(
                   `\x1b[31m 〢`,
-                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m${interaction.user.username} WATCH`,
                   `\x1b[35m Staff Members Category`,
                 );
@@ -312,7 +312,7 @@ module.exports = async (client, config) => {
 
                 console.log(
                   `\x1b[31m 〢`,
-                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m${interaction.user.username} WATCH`,
                   `\x1b[35m Leaders Category`,
                 );
@@ -367,7 +367,7 @@ module.exports = async (client, config) => {
 
                 console.log(
                   `\x1b[31m 〢`,
-                  `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m${interaction.user.username} WATCH`,
                   `\x1b[35m Partners Category`,
                 );

@@ -77,8 +77,8 @@ client.on("ready", async () => {
   //const chat = require(`./src/parfait/chat`)(client, config);
 
   console.log(
-    `\x1b[31m 〢`,
-    `\x1b[30m ${moment(Date.now()).format("LT")}`,
+    `\x1b[31m  〢`,
+    `\x1b[33m ${moment(Date.now()).format("LT")}`,
     `\x1b[31m ${client.user.tag}`,
     `\x1b[32m ONLINE`,
   );
@@ -91,8 +91,8 @@ client.on("ready", async () => {
       ),
     );
   console.log(
-    `\x1b[31m 〢`,
-    `\x1b[30m ${moment(Date.now()).format("LT")}`,
+    `\x1b[31m  〢`,
+    `\x1b[33m ${moment(Date.now()).format("LT")}`,
     `\x1b[31m SUN™&Co Smash Legends`,
     `\x1b[32m CHECKED`,
   );

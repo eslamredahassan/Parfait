@@ -1,4 +1,4 @@
-console.log(
+console.info(
   `\x1b[31m`,
   `
    ▓█████   ▄████ ▓██   ██▓  ▄████  ▄▄▄       ███▄ ▄███▓▓█████  ██▀███  
@@ -13,8 +13,13 @@ console.log(
  `,
 );
 console.log(
-  `                           PARFAIT™ DEV VERSION                        `,
+  `\x1b[33m`,
+  `\x1b[7m`,
+  `                      PARFAIT™ DEV VERSION BY EGYGAMER                  `,
 );
 console.log(
-  `                                SYSTEM LOG                             `,
+  `\x1b[0m`,
+  `\x1b[32m`,
+  `\x1b[1m`,
+  `                              SYSTEM LOG                             `,
 );

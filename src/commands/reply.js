@@ -20,7 +20,7 @@ module.exports = async (client, config) => {
         case "#ap_reply": {
           console.log(
             `\x1b[31m 〢`,
-            `\x1b[30m ${moment(Date.now()).format("lll")}`,
+            `\x1b[33m ${moment(Date.now()).format("lll")}`,
             `\x1b[34m${interaction.user.username} USED`,
             `\x1b[35m Reply Button`,
           );

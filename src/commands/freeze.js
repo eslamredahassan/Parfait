@@ -79,7 +79,7 @@ module.exports = async (client, config) => {
         /// Console Action ///
         console.log(
           `\x1b[33m 〢`,
-          `\x1b[30m${moment(Date.now()).format("lll")}`,
+          `\x1b[33m${moment(Date.now()).format("lll")}`,
           `\x1b[34m ${ap_user.user.username}`,
           `\x1b[32m REJECTED BY ${interaction.user.username}`,
         );
@@ -143,7 +143,7 @@ module.exports = async (client, config) => {
         } catch (err) {
           console.log(
             `\x1b[31m 〢`,
-            `\x1b[30m ${moment(Date.now()).format("lll")}`,
+            `\x1b[33m ${moment(Date.now()).format("lll")}`,
             `\x1b[34m${ap_user.user.username} ROLES`,
             `\x1b[35m Unfounded!`,
           );
@@ -152,7 +152,7 @@ module.exports = async (client, config) => {
 
         console.log(
           `\x1b[31m 🛠`,
-          `\x1b[30m ${moment(Date.now()).format("lll")}`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[33m Sun wannabe role REMOVED`,
           `\x1b[33m Freeze role ADDED`,
         );
@@ -193,7 +193,7 @@ module.exports = async (client, config) => {
           .catch(() => console.log("Error Line 185"));
         console.log(
           `\x1b[31m 🛠`,
-          `\x1b[30m ${moment(Date.now()).format("lll")}`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[33m Permission denied`,
         );
       }

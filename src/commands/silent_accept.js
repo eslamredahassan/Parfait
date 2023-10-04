@@ -62,7 +62,7 @@ module.exports = async (client, config) => {
 
               console.log(
                 `\x1b[33m 〢`,
-                `\x1b[30m${moment(Date.now()).format("lll")}`,
+                `\x1b[33m${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${ap_user.user.username}`,
                 `\x1b[32m ACCEPTED BY ${interaction.user.username}`,
               );
@@ -104,7 +104,7 @@ module.exports = async (client, config) => {
                 .catch(() => console.log("Error Line 2298"));
               console.log(
                 `\x1b[33m 🛠`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m SunTest role ADDED`,
               );
 
@@ -113,7 +113,7 @@ module.exports = async (client, config) => {
                 .catch(() => console.log("Error Line 2305"));
               console.log(
                 `\x1b[33m 🛠`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m SquadSUN role ADDED`,
               );
 
@@ -122,7 +122,7 @@ module.exports = async (client, config) => {
                 .catch(() => console.log("Error Line 2312"));
               console.log(
                 `\x1b[36m 🛠`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Waitlist role REMOVED`,
               );
 
@@ -161,7 +161,7 @@ module.exports = async (client, config) => {
                 .catch(() => console.log("Error Line 2350"));
               console.log(
                 `\x1b[31m 🛠`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Permission denied`,
               );
             }
