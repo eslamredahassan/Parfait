@@ -27,18 +27,13 @@ module.exports = async (client, config) => {
         type: "CHAT_INPUT",
       },
       {
-        name: "uptime",
+        name: "parfait_status",
         description: `[Dev] Check Parfait Uptime`,
         type: "CHAT_INPUT",
       },
       {
-        name: "mini-games",
-        description: `[Dev] Mini Games Menu`,
-        type: "CHAT_INPUT",
-      },
-      {
         name: "ping",
-        description: `[Dev] Test Command`,
+        description: `[Dev] Check Parfait latency`,
         type: "CHAT_INPUT",
       },
     ]);

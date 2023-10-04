@@ -138,6 +138,51 @@ module.exports = async (client, config) => {
             }
           }
           break;
+        case "parfait_status":
+          {
+            console.log(
+              `\x1b[31m  〢`,
+              `\x1b[33m ${moment(Date.now()).format("lll")}`,
+              `\x1b[34m ${interaction.user.username} USED`,
+              `\x1b[35m Parfait Status Command`,
+            );
+
+            function uptimeString(seconds) {
+              let days = Math.floor(seconds / (3600 * 24));
+              seconds -= days * 3600 * 24;
+              let hours = Math.floor(seconds / 3600);
+              seconds -= hours * 3600;
+              let minutes = Math.floor(seconds / 60);
+              seconds -= minutes * 60;
+              return `\`\`${days}\`\` Days, \`\`${hours}\`\` Hours, \`\`${minutes}\`\` Minutes, and \`\`${seconds}\`\` seconds`;
+            }
+
+            await interaction.reply({
+              embeds: [
+                new MessageEmbed()
+                  .setColor(color.gray)
+                  .setTitle(`${emojis.alert} ${client.user.tag} status`)
+                  .setDescription("")
+                  //.setThumbnail(Logo)
+                  .setImage(banners.aboutBanner)
+                  .addFields({
+                    name: `${emojis.time} Uptime`,
+                    value: `${emojis.threadMark} ${uptimeString(
+                      Math.floor(process.uptime()),
+                    )}`,
+                    inline: false,
+                  })
+                  .setFooter({
+                    ///text: `This is for Staff members only, no one else can see it`,
+                    text: `Parfait - Advanced Discord Application Bot`,
+                    iconURL: banners.parfaitIcon,
+                  }),
+              ],
+              ephemeral: true,
+              components: [],
+            });
+          }
+          break;
         case "ping":
           {
             console.log(
@@ -157,40 +202,6 @@ module.exports = async (client, config) => {
               content: `Roundtrip latency: ${
                 sent.createdTimestamp - interaction.createdTimestamp
               }ms`,
-              ephemeral: true,
-            });
-          }
-          break;
-        case "uptime":
-          {
-            console.log(
-              `\x1b[31m  〢`,
-              `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m ${interaction.user.username} USED`,
-              `\x1b[35m uptime Command`,
-            );
-
-            function uptimeString(seconds) {
-              let days = Math.floor(seconds / (3600 * 24));
-              seconds -= days * 3600 * 24;
-              let hours = Math.floor(seconds / 3600);
-              seconds -= hours * 3600;
-              let minutes = Math.floor(seconds / 60);
-              seconds -= minutes * 60;
-              return `\`\`${days}\`\` Days, \`\`${hours}\`\` Hours, \`\`${minutes}\`\` Minutes, and \`\`${seconds}\`\` seconds`;
-            }
-
-            const sent = await interaction.reply({
-              content: `${emojis.time} Thinking ...`,
-              fetchReply: true,
-              ephemeral: true,
-            });
-
-            await wait(3000);
-            interaction.editReply({
-              content: `${client.user} uptime for ${uptimeString(
-                Math.floor(process.uptime()),
-              )}`,
               ephemeral: true,
             });
           }
