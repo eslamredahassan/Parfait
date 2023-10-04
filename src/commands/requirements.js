@@ -70,6 +70,11 @@ module.exports = async (client, config) => {
                       inline: true,
                     },
                     {
+                      name: `${emojis.alert} **Importat Note**`,
+                      value: fieldsText.importantNote,
+                      inline: false,
+                    },
+                    {
                       name:
                         `${emojis.cooldown} **Cooldown** ` +
                         "``30 day``" +
@@ -95,7 +100,7 @@ module.exports = async (client, config) => {
             console.log(
               `\x1b[31m  〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m${interaction.user.username} USED`,
+              `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m Requirements Button`,
             );
           }

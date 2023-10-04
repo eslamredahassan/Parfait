@@ -136,7 +136,7 @@ module.exports = async (client, config) => {
               }
               console.log(
                 `\x1b[31m  〢`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${interaction.user.username}`,
                 `\x1b[35m Setup`,
                 `\x1b[31mCLOSED MODE`,
@@ -253,10 +253,10 @@ module.exports = async (client, config) => {
               }
               console.log(
                 `\x1b[31m  〢`,
-                `\x1b[30m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${interaction.user.username}`,
                 `\x1b[35m Switched To`,
-                `\x1b[32mCLOSED MODE`,
+                `\x1b[32m CLOSED MODE`,
               );
               cooldown.add(interaction.user.id);
               setTimeout(() => {
