@@ -1,17 +1,18 @@
 const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+
+const moment = require("moment");
+const wait = require("util").promisify(setTimeout);
+const cooldown = new Set();
+require("moment-duration-format");
+
 const messages = require("../assest/messages.js");
 const interface = require("../assest/interface.js");
 const fieldsText = require("../assest/fieldsText.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
-const moment = require("moment");
-const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 module.exports = async (client, config) => {
-
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -34,7 +35,6 @@ module.exports = async (client, config) => {
               .setEmoji(emojis.cross),
           ]);
           {
-
             let member = guild.members.cache.get(interaction.user.id);
             if (member.roles.cache.has(config.banRole))
               return interaction.reply({
@@ -70,7 +70,10 @@ module.exports = async (client, config) => {
                       inline: true,
                     },
                     {
-                      name: `${emojis.cooldown} **Cooldown** ` + "``30 day``" + " **for failed application**",
+                      name:
+                        `${emojis.cooldown} **Cooldown** ` +
+                        "``30 day``" +
+                        " **for failed application**",
                       value: fieldsText.cooldownNote,
                       inline: false,
                     },
@@ -93,7 +96,7 @@ module.exports = async (client, config) => {
               `\x1b[31m 〢`,
               `\x1b[30m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m${interaction.user.username} USED`,
-              `\x1b[35m Requirements Button`
+              `\x1b[35m Requirements Button`,
             );
           }
           break;

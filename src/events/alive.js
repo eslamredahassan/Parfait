@@ -6,10 +6,10 @@ const app = express();
 const port = 3000;
 //// Application Sun ///
 
-module.exports = async (client, settings) => {
+module.exports = async (client, config) => {
   app.get("/", (req, res) => {
     res.send(
-      `🟢 Parfait Online in IEgyGamerI server ${moment().format("LTS")}`
+      `🟢 Parfait Online in IEgyGamerI server ${moment().format("LTS")}`,
     );
   });
   app.listen(port, () => {
@@ -17,7 +17,7 @@ module.exports = async (client, settings) => {
       `\x1b[31m 〢`,
       `\x1b[30m ${moment(Date.now()).format("LT")}`,
       `\x1b[31m Uptime connection`,
-      `\x1b[32m LOADED`
+      `\x1b[32m LOADED`,
     );
   });
 };

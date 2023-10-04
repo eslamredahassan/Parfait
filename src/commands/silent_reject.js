@@ -1,15 +1,16 @@
 const { MessageEmbed } = require("discord.js");
-const banners = require("../assest/banners.js");
-const errors = require("../assest/errors.js");
-const color = require("../assest/color.js");
-const emojis = require("../assest/emojis");
+
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-module.exports = async (client, config) => {
+const banners = require("../assest/banners.js");
+const errors = require("../assest/errors.js");
+const color = require("../assest/color.js");
+const emojis = require("../assest/emojis");
 
+module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -19,21 +20,24 @@ module.exports = async (client, config) => {
         case "#silent_reject":
           {
             //// Check the permissions ///
-            const perms = [`${config.devRole}`, `${config.devRoleTest}`]
+            const perms = [`${config.devRole}`, `${config.devRoleTest}`];
             let staff = guild.members.cache.get(interaction.user.id);
             if (staff.roles.cache.hasAny(...perms)) {
-
               let embed = new MessageEmbed(interaction.message.embeds[0])
-                .setTitle(`${emojis.alert} Rejected by ${interaction.user.username}`)
+                .setTitle(
+                  `${emojis.alert} Rejected by ${interaction.user.username}`,
+                )
                 .setColor(color.gray)
                 .setImage(banners.silentRejectbanner)
                 .setThumbnail(banners.rejectIcon)
                 .setTimestamp();
               /// Edit Review Embed ///
-              await interaction.message.edit({
-                embeds: [embed],
-                components: [],
-              }).then((msg) => msg.unpin());
+              await interaction.message
+                .edit({
+                  embeds: [embed],
+                  components: [],
+                })
+                .then((msg) => msg.unpin());
               //// Get user id from the footer ///
               const ID = interaction.message.embeds[0].footer.text;
               const ap_user = await interaction.guild.members.fetch(ID);
@@ -49,7 +53,8 @@ module.exports = async (client, config) => {
                   ],
                   //this is the important part
                   ephemeral: true,
-                }).catch(() => console.log('Error Line 58'));
+                })
+                .catch(() => console.log("Error Line 58"));
               //// Send message to log channel after rejecting member ///
               const log = interaction.guild.channels.cache.get(config.log);
               await log.send({
@@ -60,7 +65,7 @@ module.exports = async (client, config) => {
                     color: color.gray,
                     timestamp: new Date(),
                     footer: {
-                      text: 'Rejected in',
+                      text: "Rejected in",
                       icon_url: banners.parfaitIcon,
                     },
                   },
@@ -69,21 +74,25 @@ module.exports = async (client, config) => {
                 ephemeral: false,
               });
 
-              await ap_user.roles.remove(config.waitRole).catch(() => console.log('Error Line 77'));
+              await ap_user.roles
+                .remove(config.waitRole)
+                .catch(() => console.log("Error Line 77"));
               console.log(
                 `\x1b[31m 🛠`,
                 `\x1b[30m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m Sun wannabe role REMOVED`
+                `\x1b[33m Sun wannabe role REMOVED`,
               );
               //// Get channel id from the server and find the thread name ///
-              let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+              let applyChannel = interaction.guild.channels.cache.get(
+                config.applyChannel,
+              );
               if (!applyChannel) return;
 
               const user = ap_user.user;
               const userName = user.username;
 
               const threadName = applyChannel.threads.cache.find(
-                (x) => x.name === `${"🧤︱" + userName + " Tryout"}`
+                (x) => x.name === `${"🧤︱" + userName + " Tryout"}`,
               );
               /// Rename The Thread ///
               await threadName.setName("🧤︱" + `${userName}` + " Rejected");
@@ -113,11 +122,11 @@ module.exports = async (client, config) => {
                   //this is the important part
                   ephemeral: true,
                 })
-                .catch(() => console.log('Error Line 2713'));
+                .catch(() => console.log("Error Line 2713"));
               console.log(
                 `\x1b[31m 🛠`,
                 `\x1b[30m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m Permission denied`
+                `\x1b[33m Permission denied`,
               );
             }
           }

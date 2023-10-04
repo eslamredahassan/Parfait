@@ -1,11 +1,11 @@
 const { Client, ActivityType } = require("discord.js");
 const { codeBlock } = require("@discordjs/builders");
-const settings = require("../config");
+const config = require("../config");
 const moment = require("moment");
 
 //// Application Sun ///
 
-module.exports = async (client, settings) => {
+module.exports = async (client, config) => {
   let membersCount = client.guilds.cache
     .map((guild) => guild.memberCount)
     .reduce((a, b) => a + b, 0);
@@ -43,14 +43,14 @@ module.exports = async (client, settings) => {
     `\x1b[31m 〢`,
     `\x1b[30m ${moment(Date.now()).format("LT")}`,
     `\x1b[31m Parfait Activity`,
-    `\x1b[32m UPDATED`
+    `\x1b[32m UPDATED`,
   );
   client.channels.cache
-    .get(`${settings.Dev_Log}`)
+    .get(`${config.Dev_Log}`)
     .send(
       codeBlock(
         "ini",
-        `〢 ${moment(Date.now()).format("LT")} [ Parfait Activity UPDATED ]`
-      )
+        `〢 ${moment(Date.now()).format("LT")} [ Parfait Activity UPDATED ]`,
+      ),
     );
 };

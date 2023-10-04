@@ -1,13 +1,20 @@
-const { MessageActionRow, MessageButton, MessageEmbed, Modal, TextInputComponent } = require("discord.js");
+const {
+  MessageActionRow,
+  MessageButton,
+  MessageEmbed,
+  Modal,
+  TextInputComponent,
+} = require("discord.js");
+
+const moment = require("moment");
+require("moment-duration-format");
+
 const interface = require("../assest/interface.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
-const moment = require("moment");
-require("moment-duration-format");
 
 module.exports = async (client, config) => {
-
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -33,7 +40,6 @@ module.exports = async (client, config) => {
             let row_password = new MessageActionRow().addComponents(password);
             maintenance_modal.addComponents(row_password);
             await interaction.showModal(maintenance_modal);
-
           }
           break;
         default:
@@ -41,11 +47,13 @@ module.exports = async (client, config) => {
       }
     }
     const answers = { [0]: "Es17lam12Re19da95" };
-    function getRandomInt(max) { return Math.floor(Math.random() * max) };
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
     const passwords = getRandomInt(0);
 
     //// Send application results in review room ////
-    if (interaction.customId === 'maintenance_modal') {
+    if (interaction.customId === "maintenance_modal") {
       const password = interaction.fields.getTextInputValue("ap_password");
 
       /// Embed of data in review room ///
@@ -77,14 +85,18 @@ module.exports = async (client, config) => {
       ]);
 
       if (password.toLowerCase() == answers[passwords].toLowerCase()) {
-        let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+        let applyChannel = interaction.guild.channels.cache.get(
+          config.applyChannel,
+        );
         if (!applyChannel) return;
 
         applyChannel.send({
           embeds: [
             new MessageEmbed()
               .setColor(color.gray)
-              .setTitle(`${emojis.app} ${interaction.guild.name}\n${emojis.threadMark}Recruitments Application System`)
+              .setTitle(
+                `${emojis.app} ${interaction.guild.name}\n${emojis.threadMark}Recruitments Application System`,
+              )
               .setDescription(interface.maintenanceMessage)
               //.setThumbnail(Logo)
               .setImage(banners.maintenance)
@@ -101,7 +113,7 @@ module.exports = async (client, config) => {
           `\x1b[31m 〢`,
           `\x1b[30m ${moment(Date.now()).format("LT")}`,
           `\x1b[34m ${interaction.user.username}`,
-          `\x1b[32m SETUP MAINTENANCE MODE`
+          `\x1b[32m SETUP MAINTENANCE MODE`,
         );
         return await interaction.update({
           embeds: [
@@ -121,7 +133,7 @@ module.exports = async (client, config) => {
           `\x1b[31m 〢`,
           `\x1b[30m ${moment(Date.now()).format("LT")}`,
           `\x1b[34m ${interaction.user.username}`,
-          `\x1b[31m ENTERED INCORRECT PASSWORD`
+          `\x1b[31m ENTERED INCORRECT PASSWORD`,
         );
         return await interaction.update({
           embeds: [
@@ -136,7 +148,7 @@ module.exports = async (client, config) => {
           ephemeral: true,
           components: [],
         });
-      };
+      }
     }
   });
 };

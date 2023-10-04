@@ -36,25 +36,20 @@ module.exports = async (client, config) => {
         description: `[Dev] Test Command`,
         type: "CHAT_INPUT",
       },
-      {
-        name: "leave_sun",
-        description: `[Dev] Send request to leave Sun`,
-        type: "CHAT_INPUT",
-      },
     ]);
   }
   console.log(
     `\x1b[31m 〢`,
     `\x1b[30m ${moment(Date.now()).format("LT")}`,
     `\x1b[31m Slash commands`,
-    `\x1b[32m LOADED`
+    `\x1b[32m LOADED`,
   );
   client.channels.cache
     .get(`${config.Dev_Log}`)
     .send(
       codeBlock(
         "ini",
-        `〢 ${moment(Date.now()).format("LT")} [ Slash commands LOADED ]`
-      )
+        `〢 ${moment(Date.now()).format("LT")} [ Slash commands LOADED ]`,
+      ),
     );
 };
