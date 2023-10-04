@@ -78,7 +78,7 @@ module.exports = async (client, config) => {
                 .remove(config.waitRole)
                 .catch(() => console.log("Error Line 77"));
               console.log(
-                `\x1b[31m 🛠`,
+                `\x1b[31m  🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Sun wannabe role REMOVED`,
               );
@@ -104,8 +104,8 @@ module.exports = async (client, config) => {
               await threadName.setArchived(true);
               /// Console Action ///
               console.log(
-                `\x1b[33m 〢`,
-                `\x1b[33m${moment(Date.now()).format("lll")}`,
+                `\x1b[33m  〢`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${ap_user.user.username}`,
                 `\x1b[32m REJECTED BY ${interaction.user.username}`,
               );
@@ -124,7 +124,7 @@ module.exports = async (client, config) => {
                 })
                 .catch(() => console.log("Error Line 2713"));
               console.log(
-                `\x1b[31m 🛠`,
+                `\x1b[31m  🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Permission denied`,
               );

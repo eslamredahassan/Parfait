@@ -100,28 +100,19 @@ module.exports = async (client, config) => {
               });
               //// Interactions roles ///
               await ap_user.roles
-                .add(config.SunTest)
+                .add([config.SunTest, config.SquadSUN])
                 .catch(() => console.log("Error Line 2298"));
               console.log(
-                `\x1b[33m 🛠`,
+                `\x1b[33m  🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m SunTest role ADDED`,
-              );
-
-              await ap_user.roles
-                .add(config.SquadSUN)
-                .catch(() => console.log("Error Line 2305"));
-              console.log(
-                `\x1b[33m 🛠`,
-                `\x1b[33m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m SquadSUN role ADDED`,
+                `\x1b[33m Sun Roles ADDED`,
               );
 
               await ap_user.roles
                 .remove(config.waitRole)
                 .catch(() => console.log("Error Line 2312"));
               console.log(
-                `\x1b[36m 🛠`,
+                `\x1b[36m  🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Waitlist role REMOVED`,
               );
@@ -160,7 +151,7 @@ module.exports = async (client, config) => {
                 })
                 .catch(() => console.log("Error Line 2350"));
               console.log(
-                `\x1b[31m 🛠`,
+                `\x1b[31m  🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Permission denied`,
               );

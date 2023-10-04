@@ -60,7 +60,7 @@ module.exports = async (client, config) => {
               ephemeral: true,
             });
             console.log(
-              `\x1b[31m 🛠`,
+              `\x1b[31m  🛠`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[33m Permission denied`,
             );
@@ -126,8 +126,8 @@ module.exports = async (client, config) => {
       });
       /// Console Action ///
       console.log(
-        `\x1b[33m 〢`,
-        `\x1b[33m${moment(Date.now()).format("lll")}`,
+        `\x1b[33m  〢`,
+        `\x1b[33m ${moment(Date.now()).format("lll")}`,
         `\x1b[34m ${ap_user.user.username}`,
         `\x1b[32m REJECTED BY ${interaction.user.username}`,
       );

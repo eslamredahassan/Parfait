@@ -132,20 +132,12 @@ module.exports = async (client, config) => {
               });
               //// Interactions roles ///
               await ap_user.roles
-                .add(config.SunTest)
+                .add([config.SunTest, config.SquadSUN])
                 .catch(() => console.log("Error Line 2159"));
               console.log(
                 `\x1b[33m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m SunTest role ADDED`,
-              );
-              await ap_user.roles
-                .add(config.SquadSUN)
-                .catch(() => console.log("Error Line 2165"));
-              console.log(
-                `\x1b[33m 🛠`,
-                `\x1b[33m ${moment(Date.now()).format("lll")}`,
-                `\x1b[33m SquadSUN role ADDED`,
+                `\x1b[33m Sun Roles ADDED`,
               );
               await ap_user.roles
                 .remove(config.waitRole)

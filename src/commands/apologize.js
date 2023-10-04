@@ -78,8 +78,8 @@ module.exports = async (client, config) => {
           .then((msg) => msg.unpin());
 
         console.log(
-          `\x1b[33m 〢`,
-          `\x1b[33m${moment(Date.now()).format("lll")}`,
+          `\x1b[33m  〢`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[34m ${ap_user.user.username}`,
           `\x1b[32m APOLOGIZED BY ${interaction.user.username}`,
         );
@@ -94,19 +94,17 @@ module.exports = async (client, config) => {
           ],
         });
         //// Send message after accepting member ///
-        await interaction
-          .reply({
-            embeds: [
-              {
-                title: `${emojis.check} Apologize Alert`,
-                description: `${emojis.threadMarkmid} You apologized to ${ap_user} for not being in **${interaction.guild.name}**\n${emojis.threadMark} Removed his application from pin list`,
-                color: color.gray,
-              },
-            ],
-            //this is the important part
-            ephemeral: true,
-          })
-          .catch(() => console.log("Error Line 105"));
+        await interaction.reply({
+          embeds: [
+            {
+              title: `${emojis.check} Apologize Alert`,
+              description: `${emojis.threadMarkmid} You apologized to ${ap_user} for not being in **${interaction.guild.name}**\n${emojis.threadMark} Removed his application from pin list`,
+              color: color.gray,
+            },
+          ],
+          //this is the important part
+          ephemeral: true,
+        });
 
         const log = interaction.guild.channels.cache.get(config.log);
         await log.send({
@@ -137,7 +135,7 @@ module.exports = async (client, config) => {
           .remove(config.SunTest)
           .catch(() => console.log("Error Line 2498"));
         console.log(
-          `\x1b[33m 🛠`,
+          `\x1b[33m  🛠`,
           `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[33m SunTest role REMOVED`,
         );
@@ -145,7 +143,7 @@ module.exports = async (client, config) => {
           .remove(config.SquadSUN)
           .catch(() => console.log("Error Line 2504"));
         console.log(
-          `\x1b[33m 🛠`,
+          `\x1b[33m  🛠`,
           `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[33m SquadSUN role REMOVED`,
         );
@@ -164,7 +162,7 @@ module.exports = async (client, config) => {
           })
           .catch(() => console.log("Error Line 2523"));
         console.log(
-          `\x1b[31m 🛠`,
+          `\x1b[31m  🛠`,
           `\x1b[33m ${moment(Date.now()).format("lll")}`,
           `\x1b[33m Permission denied`,
         );

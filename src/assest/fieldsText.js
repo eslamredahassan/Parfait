@@ -40,6 +40,8 @@ module.exports = {
 
   noteMessage: `${emojis.threadMarkmid} There's a button for switch between open and close modes\n${emojis.threadMark} You don't need to use the command to switch between modes`,
 
+  noDevNote: `${emojis.threadMark} No Developer Note`,
+
   //--------------------------------------//,
 
   //---| Answer yes UI |---///

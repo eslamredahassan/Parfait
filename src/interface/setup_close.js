@@ -135,9 +135,9 @@ module.exports = async (client, config) => {
                   .catch((e) => {});
               }
               console.log(
-                `\x1b[31m 〢`,
+                `\x1b[31m  〢`,
                 `\x1b[30m ${moment(Date.now()).format("lll")}`,
-                `\x1b[34m${interaction.user.username}`,
+                `\x1b[34m ${interaction.user.username}`,
                 `\x1b[35m Setup`,
                 `\x1b[31mCLOSED MODE`,
               );
@@ -252,9 +252,9 @@ module.exports = async (client, config) => {
                   .catch((e) => {});
               }
               console.log(
-                `\x1b[31m 〢`,
+                `\x1b[31m  〢`,
                 `\x1b[30m ${moment(Date.now()).format("lll")}`,
-                `\x1b[34m${interaction.user.username}`,
+                `\x1b[34m ${interaction.user.username}`,
                 `\x1b[35m Switched To`,
                 `\x1b[32mCLOSED MODE`,
               );

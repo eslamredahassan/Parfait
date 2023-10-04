@@ -9,6 +9,7 @@ const {
 const moment = require("moment");
 require("moment-duration-format");
 
+const fieldsText = require("../assest/fieldsText.js");
 const interface = require("../assest/interface.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
@@ -29,7 +30,7 @@ module.exports = async (client, config) => {
               .setCustomId(`maintenance_modal`);
 
             const password = new TextInputComponent()
-              .setCustomId("ap_password")
+              .setCustomId("dev_password")
               .setLabel(`Enter The Password`.substring(0, 45))
               .setMinLength(1)
               .setMaxLength(17)
@@ -37,8 +38,18 @@ module.exports = async (client, config) => {
               .setPlaceholder(`Enter the password here`)
               .setStyle(1);
 
+            const note = new TextInputComponent()
+              .setCustomId("dev_note")
+              .setLabel(`Developer Note`.substring(0, 45))
+              .setMinLength(1)
+              .setMaxLength(365)
+              .setRequired(false)
+              .setPlaceholder(`Enter your note here`)
+              .setStyle(2);
+
             let row_password = new MessageActionRow().addComponents(password);
-            maintenance_modal.addComponents(row_password);
+            let row_note = new MessageActionRow().addComponents(note);
+            maintenance_modal.addComponents(row_password, row_note);
             await interaction.showModal(maintenance_modal);
           }
           break;
@@ -54,7 +65,8 @@ module.exports = async (client, config) => {
 
     //// Send application results in review room ////
     if (interaction.customId === "maintenance_modal") {
-      const password = interaction.fields.getTextInputValue("ap_password");
+      const password = interaction.fields.getTextInputValue("dev_password");
+      const note = interaction.fields.getTextInputValue("dev_note");
 
       /// Embed of data in review room ///
       let buttons = new MessageActionRow().addComponents([
@@ -99,6 +111,11 @@ module.exports = async (client, config) => {
               )
               .setDescription(interface.maintenanceMessage)
               //.setThumbnail(Logo)
+              .addFields({
+                name: `${emojis.dev} Developer Note`,
+                value: note || fieldsText.noDevNote,
+                inline: true,
+              })
               .setImage(banners.maintenance)
               .setTimestamp()
               .setFooter({
@@ -110,8 +127,8 @@ module.exports = async (client, config) => {
           components: [buttons],
         });
         console.log(
-          `\x1b[31m 〢`,
-          `\x1b[30m ${moment(Date.now()).format("LT")}`,
+          `\x1b[31m  〢`,
+          `\x1b[33m ${moment(Date.now()).format("LT")}`,
           `\x1b[34m ${interaction.user.username}`,
           `\x1b[32m SETUP MAINTENANCE MODE`,
         );
@@ -130,8 +147,8 @@ module.exports = async (client, config) => {
         });
       } else {
         console.log(
-          `\x1b[31m 〢`,
-          `\x1b[30m ${moment(Date.now()).format("LT")}`,
+          `\x1b[31m  〢`,
+          `\x1b[33m ${moment(Date.now()).format("LT")}`,
           `\x1b[34m ${interaction.user.username}`,
           `\x1b[31m ENTERED INCORRECT PASSWORD`,
         );
