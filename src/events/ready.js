@@ -9,17 +9,39 @@ module.exports = async (client, config) => {
   let membersCount = client.guilds.cache
     .map((guild) => guild.memberCount)
     .reduce((a, b) => a + b, 0);
+
+  function uptimeString(seconds) {
+    let days = Math.floor(seconds / (3600 * 24));
+    seconds -= days * 3600 * 24;
+    let hours = Math.floor(seconds / 3600);
+    seconds -= hours * 3600;
+    let minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    return `${days} Days and ${hours} Hours`;
+  }
+
   const statusArray = [
     {
-      type: "PLAYING",
-      content: `in Library World`,
+      type: 3, // WATCHING
+      content: `Library World`,
+      status: "idle",
+    },
+    {type: 0, // PLAYING
+      type: 0, // PLAYING
+      content: `SMASH LEGENDS`,
       status: "idle",
     },
     {
-      type: "PLAYING",
+      type: 2, // LISTENING
       content: `with ${membersCount} Members`,
       status: "idle",
     },
+    {
+      type: 0, // PLAYING
+      content: `for ${uptimeString(Math.floor(process.uptime()))}`,
+      status: "idle",
+    },
+    //'PLAYING [0]', 'STREAMING [1]', 'LISTENING [2]', 'WATCHING [3]', 'CUSTOM [4]', 'COMPETING [5]'
   ];
   async function pickPresence() {
     const option = Math.floor(Math.random() * statusArray.length);
@@ -38,7 +60,7 @@ module.exports = async (client, config) => {
       console.error(error);
     }
   }
-  setInterval(pickPresence, 20000);
+  setInterval(pickPresence, 30000);
   console.log(
     `\x1b[0m`,
     `\x1b[31m 〢`,
