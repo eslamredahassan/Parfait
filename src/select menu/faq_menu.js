@@ -1,7 +1,5 @@
-const {
-   MessageSelectMenu,
-   MessageActionRow 
-  } = require("discord.js");
+const { MessageSelectMenu, MessageActionRow } = require("discord.js");
+
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
