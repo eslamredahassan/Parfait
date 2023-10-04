@@ -141,9 +141,9 @@ module.exports = async (client, config) => {
         case "ping":
           {
             console.log(
-              `\x1b[31m 〢`,
+              `\x1b[31m  〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m${interaction.user.username} USED`,
+              `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m Ping Command`,
             );
 
@@ -164,9 +164,9 @@ module.exports = async (client, config) => {
         case "uptime":
           {
             console.log(
-              `\x1b[31m 〢`,
+              `\x1b[31m  〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m${interaction.user.username} USED`,
+              `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m uptime Command`,
             );
 
@@ -198,9 +198,9 @@ module.exports = async (client, config) => {
         case "report_bug":
           {
             console.log(
-              `\x1b[31m 〢`,
+              `\x1b[31m  〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m${interaction.user.username} USED`,
+              `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m Report Bug Command`,
             );
             //// Modal application code ///
@@ -261,7 +261,7 @@ module.exports = async (client, config) => {
         case "about":
           {
             console.log(
-              `\x1b[31m 〢`,
+              `\x1b[31m  〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m${interaction.user.username} USED`,
               `\x1b[35m About Command`,
