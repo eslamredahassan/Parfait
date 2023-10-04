@@ -1,4 +1,10 @@
-const { client, MessageActionRow, MessageButton } = require("discord.js");
+const { MessageActionRow, MessageButton } = require("discord.js");
+
+const moment = require("moment");
+const wait = require("util").promisify(setTimeout);
+const cooldown = new Set();
+require("moment-duration-format");
+
 const config = require("../config");
 const messages = require("../assest/messages.js");
 const responses = require("../assest/responses.js");
@@ -9,13 +15,8 @@ const banners = require("../assest/banners.js");
 const errors = require("../assest/errors.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
-const moment = require("moment");
-const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 module.exports = async (client, config) => {
-
   let guild = client.guilds.cache.get(config.guildID);
   let Logo = guild.iconURL({ dynamic: true });
 
@@ -26,7 +27,6 @@ module.exports = async (client, config) => {
           {
             let member = guild.members.cache.get(interaction.user.id);
             if (member.roles.cache.has(config.waitRole)) {
-
               let controller = new MessageActionRow().addComponents([
                 new MessageButton()
                   .setStyle("SECONDARY")
@@ -35,26 +35,25 @@ module.exports = async (client, config) => {
                   .setLabel(`Next`)
                   .setEmoji(emojis.next),
               ]);
-              
+
               await interaction.update({
                 content: `${emojis.pinkDot} Please send a screenshot from your in-game profile here`,
                 ephemeral: false,
                 components: [controller],
               });
             } else {
-              await interaction
-                .reply({
-                  embeds: [
-                    {
-                      title: `${emojis.id} Staff Member Detected`,
-                      description: `${emojis.whiteDot} Only members who have <@&${config.waitRole}> role can use this`,
-                      color: color.gray,
-                    },
-                  ],
-                  //this is the important part
-                  ephemeral: true,
-                })
-            };
+              await interaction.reply({
+                embeds: [
+                  {
+                    title: `${emojis.id} Staff Member Detected`,
+                    description: `${emojis.whiteDot} Only members who have <@&${config.waitRole}> role can use this`,
+                    color: color.gray,
+                  },
+                ],
+                //this is the important part
+                ephemeral: true,
+              });
+            }
           }
           break;
         case "#thread_message_1":
@@ -67,14 +66,16 @@ module.exports = async (client, config) => {
                 .setLabel(`Next`)
                 .setEmoji(emojis.next),
             ]);
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -102,14 +103,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.next),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -137,14 +140,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.next),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -172,14 +177,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.next),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -207,14 +214,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.next),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -242,14 +251,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.check),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -266,7 +277,7 @@ module.exports = async (client, config) => {
             });
           }
           break;
-          
+
         case "#thread_message_7":
           {
             let controller = new MessageActionRow().addComponents([
@@ -278,14 +289,16 @@ module.exports = async (client, config) => {
                 .setEmoji(emojis.check),
             ]);
 
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
@@ -304,14 +317,16 @@ module.exports = async (client, config) => {
           break;
         case "#thread_message_8":
           {
-            let applyChannel = interaction.guild.channels.cache.get(config.applyChannel);
+            let applyChannel = interaction.guild.channels.cache.get(
+              config.applyChannel,
+            );
             if (!applyChannel) return;
 
             const user = interaction.user;
             const userName = user.username;
 
             const threads = applyChannel.threads.cache.find(
-              (x) => x.name === "🧤︱" + userName + " Tryout"
+              (x) => x.name === "🧤︱" + userName + " Tryout",
             );
 
             await threads.sendTyping();
