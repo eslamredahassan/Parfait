@@ -3,14 +3,14 @@ const {
   MessageButton,
   MessageSelectMenu,
 } = require("discord.js");
-const fieldsText = require("../assest/fieldsText.js");
-const banners = require("../assest/banners.js");
-const color = require("../assest/color.js");
-const emojis = require("../assest/emojis");
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
+const fieldsText = require("../assest/fieldsText.js");
+const banners = require("../assest/banners.js");
+const color = require("../assest/color.js");
+const emojis = require("../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
