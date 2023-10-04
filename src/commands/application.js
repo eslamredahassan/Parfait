@@ -11,7 +11,6 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-const messages = require("../assest/messages.js");
 const responses = require("../assest/responses.js");
 const interface = require("../assest/interface.js");
 const fieldsText = require("../assest/fieldsText.js");
