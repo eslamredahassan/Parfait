@@ -10,16 +10,6 @@ module.exports = async (client, config) => {
     .map((guild) => guild.memberCount)
     .reduce((a, b) => a + b, 0);
 
-  function uptimeString(seconds) {
-    let days = Math.floor(seconds / (3600 * 24));
-    seconds -= days * 3600 * 24;
-    let hours = Math.floor(seconds / 3600);
-    seconds -= hours * 3600;
-    let minutes = Math.floor(seconds / 60);
-    seconds -= minutes * 60;
-    return `${days} Days and ${hours} Hours`;
-  }
-
   const statusArray = [
     {
       type: 3, // WATCHING
@@ -34,11 +24,6 @@ module.exports = async (client, config) => {
     {
       type: 2, // LISTENING
       content: `with ${membersCount} Members`,
-      status: "idle",
-    },
-    {
-      type: 0, // PLAYING
-      content: `for ${uptimeString(Math.floor(process.uptime()))}`,
       status: "idle",
     },
     //'PLAYING [0]', 'STREAMING [1]', 'LISTENING [2]', 'WATCHING [3]', 'CUSTOM [4]', 'COMPETING [5]'
