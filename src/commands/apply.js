@@ -27,7 +27,7 @@ module.exports = async (client, config) => {
           console.log(
             `\x1b[31m  〢`,
             `\x1b[33m ${moment(Date.now()).format("lll")}`,
-            `\x1b[34m${interaction.user.username} USED`,
+            `\x1b[34m ${interaction.user.username} USED`,
             `\x1b[35m Apply Button`,
           );
           let member = guild.members.cache.get(interaction.user.id);
@@ -37,7 +37,7 @@ module.exports = async (client, config) => {
                 {
                   title: `${emojis.cooldown} Cooldown Member Detected`,
                   description: `Hi ${interaction.user} you in <@&${config.coolDown}> duration, please try again later`,
-                  color: "DARK_RED",
+                  color: color.gray,
                 },
               ],
               //this is the important part
@@ -49,7 +49,7 @@ module.exports = async (client, config) => {
                 {
                   title: `${emojis.id} Sun Member Detected`,
                   description: `Hi ${interaction.user} you already in <@&${config.SquadSUN}>`,
-                  color: "DARK_ORANGE",
+                  color: color.gray,
                 },
               ],
               //this is the important part
@@ -68,13 +68,21 @@ module.exports = async (client, config) => {
             (x) => x.name === `${"🧤︱" + userName + " Tryout"}`,
           );
 
+          console.log(
+            `\x1b[31m  〢`,
+            `\x1b[33m ${moment(Date.now()).format("lll")}`,
+            `\x1b[35m ${interaction.user.username}`,
+            `\x1b[36m TRYING TO`,
+            `\x1b[1m \x1b[32mApply Again `,
+          );
+
           if (member.roles.cache.has(config.waitRole))
             return interaction.update({
               embeds: [
                 {
                   title: `${emojis.alert} Alert`,
                   description: `Hi ${interaction.user} We've already received your application`,
-                  color: `${color.gray}`,
+                  color: color.gray,
                   fields: [
                     {
                       name: `${emojis.tryOut} You're now in try out process`,
@@ -95,7 +103,7 @@ module.exports = async (client, config) => {
                 {
                   title: `${emojis.banApp} Freezed Member`,
                   description: `${emojis.whiteDot} Hi ${interaction.user} ${messages.Banned}`,
-                  color: `${color.gray}`,
+                  color: color.gray,
                   fields: [
                     {
                       name: `${emojis.question} If you think something is wrong`,
