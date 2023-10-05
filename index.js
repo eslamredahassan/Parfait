@@ -1,6 +1,8 @@
 const { Client } = require("discord.js");
 Client.setMaxListeners(0);
 const { codeBlock } = require("@discordjs/builders");
+
+const discord = require("discord.js");
 const config = require("./src/config");
 const ready = require("./src/events/ready");
 const antiCrash = require("./src/events/antiCrash");
@@ -8,7 +10,6 @@ const slashCommands = require("./src/events/slashCommands");
 const alive = require("./src/events/alive");
 const logo = require("./src/assest/logo");
 const moment = require("moment");
-const discord = require("discord.js");
 const fs = require("fs");
 
 const client = new Client({
