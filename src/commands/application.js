@@ -155,6 +155,8 @@ module.exports = async (client, config) => {
               return `${days} Days, ${hours} Hours, ${minutes} Minutes, and ${seconds} seconds`;
             }
 
+            const discordJSVersion = packageJSON.dependencies["discord.js"];
+
             await interaction.reply({
               embeds: [
                 new MessageEmbed()
@@ -163,13 +165,15 @@ module.exports = async (client, config) => {
                   .setDescription("")
                   //.setThumbnail(Logo)
                   .setImage(banners.aboutBanner)
-                  .addFields({
-                    name: `${emojis.time} Uptime`,
-                    value: `${emojis.threadMark} ${uptimeString(
-                      Math.floor(process.uptime()),
-                    )}`,
-                    inline: false,
-                  })
+                  .addFields(
+                    {
+                      name: `${emojis.time} Uptime`,
+                      value: `${emojis.threadMark} ${uptimeString(
+                        Math.floor(process.uptime()),
+                      )}`,
+                      inline: false,
+                    },
+                  )
                   .setFooter({
                     ///text: `This is for Staff members only, no one else can see it`,
                     text: `Parfait - Advanced Discord Application Bot`,
