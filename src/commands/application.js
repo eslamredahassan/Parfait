@@ -6,11 +6,13 @@ const {
   TextInputComponent,
 } = require("discord.js");
 
+const os = require("os");
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
+const packageJSON = require("../../package");
 const responses = require("../assest/responses.js");
 const interface = require("../assest/interface.js");
 const fieldsText = require("../assest/fieldsText.js");
@@ -155,6 +157,12 @@ module.exports = async (client, config) => {
               return `${days} Days, ${hours} Hours, ${minutes} Minutes, and ${seconds} seconds`;
             }
 
+            const usedMemory = os.totalmem() - os.freemem(),
+              totalMemory = os.totalmem();
+            const getpercentage =
+              ((usedMemory / totalMemory) * 100).toFixed(2) + "%";
+            // in Giga `(usedMemory / Math.pow(1024, 3)).toFixed(2)`
+
             const discordJSVersion = packageJSON.dependencies["discord.js"];
 
             await interaction.reply({
@@ -166,6 +174,16 @@ module.exports = async (client, config) => {
                   //.setThumbnail(Logo)
                   .setImage(banners.aboutBanner)
                   .addFields(
+                    {
+                      name: `${emojis.nodejs} Discord.js version`,
+                      value: `${emojis.threadMark} ${discordJSVersion}`,
+                      inline: true,
+                    },
+                    {
+                      name: `${emojis.cpu} Used memory`,
+                      value: `${emojis.threadMark} ${getpercentage}`,
+                      inline: true,
+                    },
                     {
                       name: `${emojis.time} Uptime`,
                       value: `${emojis.threadMark} ${uptimeString(
