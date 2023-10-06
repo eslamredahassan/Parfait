@@ -72,7 +72,8 @@ module.exports = async (client, config) => {
               });
 
               console.log(
-                `\x1b[33m  〢`,
+                `\x1b[0m`,
+                `\x1b[33m 〢`,
                 `\x1b[30m ${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${ap_user.user.username}`,
                 `\x1b[32m ACCEPTED BY ${interaction.user.username}`,
@@ -135,7 +136,8 @@ module.exports = async (client, config) => {
                 .add([config.SunTest, config.SquadSUN])
                 .catch(() => console.log("Error Line 2159"));
               console.log(
-                `\x1b[33m  🛠`,
+                `\x1b[0m`,
+                `\x1b[33m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Sun Roles ADDED`,
               );
@@ -143,7 +145,8 @@ module.exports = async (client, config) => {
                 .remove(config.waitRole)
                 .catch(() => console.log("Error Line 2171"));
               console.log(
-                `\x1b[36m  🛠`,
+                `\x1b[0m`,
+                `\x1b[36m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Waitlist role REMOVED`,
               );
@@ -164,7 +167,8 @@ module.exports = async (client, config) => {
                   await msg_two.react(React);
                 } catch (err) {
                   console.log(
-                    `\x1b[31m  〢`,
+                    `\x1b[0m`,
+                    `\x1b[31m 〢`,
                     `\x1b[33m ${moment(Date.now()).format("lll")}`,
                     `\x1b[34m ${interaction.user.username} Error`,
                     `\x1b[35m Sending emojis!`,
@@ -207,7 +211,8 @@ module.exports = async (client, config) => {
                 })
                 .catch(() => console.log("Error Line 2209"));
               console.log(
-                `\x1b[31m  🛠`,
+                `\x1b[0m`,
+                `\x1b[31m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[33m Permission denied`,
               );

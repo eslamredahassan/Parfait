@@ -145,13 +145,6 @@ module.exports = async (client, config) => {
           break;
         case "status":
           {
-            console.log(
-              `\x1b[31m  〢`,
-              `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m ${interaction.user.username} USED`,
-              `\x1b[35m Parfait Status Command`,
-            );
-
             function uptimeString(seconds) {
               let days = Math.floor(seconds / (3600 * 24));
               seconds -= days * 3600 * 24;
@@ -159,7 +152,7 @@ module.exports = async (client, config) => {
               seconds -= hours * 3600;
               let minutes = Math.floor(seconds / 60);
               seconds -= minutes * 60;
-              return `\`\`${days}\`\` Days, \`\`${hours}\`\` Hours, \`\`${minutes}\`\` Minutes, and \`\`${seconds}\`\` seconds`;
+              return `${days} Days, ${hours} Hours, ${minutes} Minutes, and ${seconds} seconds`;
             }
 
             await interaction.reply({
@@ -190,31 +183,35 @@ module.exports = async (client, config) => {
           break;
         case "ping":
           {
-            console.log(
-              `\x1b[31m  〢`,
-              `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m ${interaction.user.username} USED`,
-              `\x1b[35m Ping Command`,
-            );
-
             const sent = await interaction.reply({
-              content: "thinking...",
+              content: "Thinking...",
               fetchReply: true,
               ephemeral: true,
             });
             await wait(3000);
             interaction.editReply({
-              content: `My latency: ${
+              content: `🏓 Latency is: ${
                 sent.createdTimestamp - interaction.createdTimestamp
-              }ms`,
+              } ms`,
               ephemeral: true,
             });
+            console.log(
+              `\x1b[0m`,
+              `\x1b[31m 〢`,
+              `\x1b[33m ${moment(Date.now()).format("lll")}`,
+              `\x1b[34m ${interaction.user.username} USED`,
+              `\x1b[35m Ping Command`,
+              `\x1b[36m ${
+                sent.createdTimestamp - interaction.createdTimestamp
+              } ms`,
+            );
           }
           break;
         case "report_bug":
           {
             console.log(
-              `\x1b[31m  〢`,
+              `\x1b[0m`,
+              `\x1b[31m 〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m Report Bug Command`,
@@ -250,7 +247,8 @@ module.exports = async (client, config) => {
         case "message_the_developer":
           {
             console.log(
-              `\x1b[31m  〢`,
+              `\x1b[0m`,
+              `\x1b[31m 〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m Message Dev Command`,
@@ -277,7 +275,8 @@ module.exports = async (client, config) => {
         case "about":
           {
             console.log(
-              `\x1b[31m  〢`,
+              `\x1b[0m`,
+              `\x1b[31m 〢`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
               `\x1b[34m ${interaction.user.username} USED`,
               `\x1b[35m About Command`,
