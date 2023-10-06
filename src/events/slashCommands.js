@@ -27,7 +27,7 @@ module.exports = async (client, config) => {
         type: "CHAT_INPUT",
       },
       {
-        name: "parfait_status",
+        name: "status",
         description: `[Dev] Check Parfait Uptime`,
         type: "CHAT_INPUT",
       },
