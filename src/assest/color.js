@@ -9,7 +9,7 @@ module.exports = {
   pink: `DARK_VIVID_PINK`,
   //--------------------------------------//,
 
-}
+};
 console.log(
   `\x1b[0m`,
   `\x1b[31m 〢`,
