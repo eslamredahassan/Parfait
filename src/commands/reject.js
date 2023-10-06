@@ -7,8 +7,6 @@ const {
 
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const messages = require("../assest/messages.js");
 const banners = require("../assest/banners.js");
@@ -92,6 +90,7 @@ module.exports = async (client, config) => {
       //// Send message to rejected member ///
       const ID = interaction.message.embeds[0].footer.text;
       const ap_user = await interaction.guild.members.fetch(ID);
+
       await ap_user.roles
         .remove(config.waitRole)
         .catch(() => console.log("Error 2583"));

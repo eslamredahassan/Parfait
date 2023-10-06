@@ -7,12 +7,7 @@ const {
 
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
-const messages = require("../assest/messages.js");
-const responses = require("../assest/responses.js");
-const fieldsText = require("../assest/fieldsText.js");
 const banners = require("../assest/banners.js");
 const errors = require("../assest/errors.js");
 const color = require("../assest/color.js");
@@ -20,7 +15,6 @@ const emojis = require("../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
-  let Logo = guild.iconURL({ dynamic: true });
 
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton()) {
@@ -57,7 +51,7 @@ module.exports = async (client, config) => {
                   {
                     title: `${emojis.alert} Permission denied`,
                     description: `${errors.permsError}`,
-                    color: `${color.gray}`,
+                    color: color.gray,
                   },
                 ],
                 //this is the important part
@@ -164,14 +158,13 @@ module.exports = async (client, config) => {
         console.log(
           `\x1b[31m  〢`,
           `\x1b[33m ${moment(Date.now()).format("lll")}`,
-          `\x1b[34m${ap_user.user.username} ROLES`,
+          `\x1b[34m ${ap_user.user.username} ROLES`,
           `\x1b[35m Unfounded!`,
         );
         throw err;
       }
-
       console.log(
-        `\x1b[31m 🛠`,
+        `\x1b[31m  🛠`,
         `\x1b[33m ${moment(Date.now()).format("lll")}`,
         `\x1b[33m Sun wannabe role REMOVED`,
         `\x1b[33m Freeze role ADDED`,

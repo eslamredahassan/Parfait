@@ -2,8 +2,6 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const banners = require("../assest/banners.js");
 const errors = require("../assest/errors.js");
@@ -12,7 +10,6 @@ const emojis = require("../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
-  let Logo = guild.iconURL({ dynamic: true });
 
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton()) {
@@ -61,8 +58,8 @@ module.exports = async (client, config) => {
               });
 
               console.log(
-                `\x1b[33m 〢`,
-                `\x1b[33m${moment(Date.now()).format("lll")}`,
+                `\x1b[33m  〢`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
                 `\x1b[34m ${ap_user.user.username}`,
                 `\x1b[32m ACCEPTED BY ${interaction.user.username}`,
               );
@@ -142,8 +139,8 @@ module.exports = async (client, config) => {
                   embeds: [
                     {
                       title: `${emojis.alert} Permission denied`,
-                      description: `${errors.permsError}`,
-                      color: `${color.gray}`,
+                      description: errors.permsError,
+                      color: color.gray,
                     },
                   ],
                   //this is the important part

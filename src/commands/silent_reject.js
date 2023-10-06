@@ -2,8 +2,6 @@ const { MessageEmbed } = require("discord.js");
 
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const banners = require("../assest/banners.js");
 const errors = require("../assest/errors.js");
@@ -115,8 +113,8 @@ module.exports = async (client, config) => {
                   embeds: [
                     {
                       title: `${emojis.alert} Permission denied`,
-                      description: `${errors.permsError}`,
-                      color: `${color.gray}`,
+                      description: errors.permsError,
+                      color: color.gray,
                     },
                   ],
                   //this is the important part

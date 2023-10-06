@@ -2,17 +2,13 @@ const { MessageActionRow, Modal, TextInputComponent } = require("discord.js");
 
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const banners = require("../assest/banners.js");
-const errors = require("../assest/errors.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
-  let Logo = guild.iconURL({ dynamic: true });
 
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton()) {

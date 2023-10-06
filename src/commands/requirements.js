@@ -1,9 +1,6 @@
 const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
 
 const moment = require("moment");
-const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const messages = require("../assest/messages.js");
 const interface = require("../assest/interface.js");
@@ -14,7 +11,6 @@ const emojis = require("../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
-  let Logo = guild.iconURL({ dynamic: true });
 
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton()) {

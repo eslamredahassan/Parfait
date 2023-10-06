@@ -143,7 +143,7 @@ module.exports = async (client, config) => {
             }
           }
           break;
-        case "parfait_status":
+        case "status":
           {
             console.log(
               `\x1b[31m  〢`,

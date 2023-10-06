@@ -1,9 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 
 const moment = require("moment");
-const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
-require("moment-duration-format");
 
 const messages = require("../assest/messages.js");
 const banners = require("../assest/banners.js");
@@ -119,7 +116,7 @@ module.exports = async (client, config) => {
                 );
               } catch (err) {
                 console.log(
-                  `\x1b[31m 〢`,
+                  `\x1b[31m  〢`,
                   `\x1b[33m ${moment(Date.now()).format("lll")}`,
                   `\x1b[34m ${ap_user.user.username} ROLES`,
                   `\x1b[35m Unfounded!`,
