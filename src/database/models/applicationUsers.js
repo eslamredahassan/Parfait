@@ -1,14 +1,18 @@
-const { MongoClient } = require("mongodb");
+const mongoose = require("mongoose");
 
-const userSchame = new MongoClient.Schame({
-    ap_usre_id: {
-        type: string,
-        required: true,
-        },
-     username: {
-        type: string,
-        required: true,
-        }
+const userSchema = new mongoose.Schema({
+  guildId: {
+    type: String,
+    required: true,
+  },
+  ap_user_id: {
+    type: String,
+    required: true,
+  },
+  username: {
+    type: String,
+    required: true,
+  },
 });
 
-const applicationUsers = module.exports = MongoClient.model('User', userSchame);
+const applicationUsers = (module.exports = mongoose.model("User", userSchema));
