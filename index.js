@@ -4,7 +4,7 @@ const { codeBlock } = require("@discordjs/builders");
 
 const discord = require("discord.js");
 const config = require("./src/config");
-const database = require("./src/database");
+const connect = require("./src/database/connect");
 const ready = require("./src/events/ready");
 const antiCrash = require("./src/events/antiCrash");
 const slashCommands = require("./src/events/slashCommands");
@@ -30,7 +30,7 @@ client.on("ready", async () => {
   antiCrash(client, config);
   ready(client, config);
   slashCommands(client, config);
-  database(client, config);
+  connect(client, config);
 
   // ------ Slash Command ------- //
   const setup_open = require(`./src/interface/setup_open`)(client, config);
