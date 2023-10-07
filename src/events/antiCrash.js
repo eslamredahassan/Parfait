@@ -1,5 +1,4 @@
 const { codeBlock } = require("@discordjs/builders");
-const settings = require("../config");
 const moment = require("moment");
 
 module.exports = (client) => {

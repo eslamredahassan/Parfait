@@ -10,6 +10,7 @@ const slashCommands = require("./src/events/slashCommands");
 const alive = require("./src/events/alive");
 const logo = require("./src/assest/logo");
 const moment = require("moment");
+const database = require("./src/database");
 const fs = require("fs");
 
 const client = new Client({
