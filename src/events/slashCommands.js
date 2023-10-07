@@ -42,7 +42,7 @@ module.exports = async (client, config) => {
     `\x1b[0m`,
     `\x1b[31m 〢`,
     `\x1b[33m ${moment(Date.now()).format("LT")}`,
-    `\x1b[31m Slash commands`,
+    `\x1b[31m Slash Commands`,
     `\x1b[32m LOADED`,
   );
   client.channels.cache

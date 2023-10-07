@@ -4,13 +4,13 @@ const { codeBlock } = require("@discordjs/builders");
 
 const discord = require("discord.js");
 const config = require("./src/config");
+const database = require("./src/database");
 const ready = require("./src/events/ready");
 const antiCrash = require("./src/events/antiCrash");
 const slashCommands = require("./src/events/slashCommands");
-const alive = require("./src/events/alive");
+const server = require("./src/events/server");
 const logo = require("./src/assest/logo");
 const moment = require("moment");
-const database = require("./src/database");
 const fs = require("fs");
 
 const client = new Client({
@@ -26,10 +26,11 @@ const client = new Client({
 });
 
 client.on("ready", async () => {
-  alive(client, config);
+  server(client, config);
   antiCrash(client, config);
   ready(client, config);
   slashCommands(client, config);
+  database(client, config);
 
   // ------ Slash Command ------- //
   const setup_open = require(`./src/interface/setup_open`)(client, config);
