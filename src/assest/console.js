@@ -35,10 +35,3 @@ module.exports = {
   gray: "\x1b[100m",
   crimson: "\x1b[48m",
 };
-console.log(
-  `\x1b[0m`,
-  `\x1b[31m 〢`,
-  `\x1b[33m ${moment(Date.now()).format("LT")}`,
-  `\x1b[31m Consloe Colors`,
-  `\x1b[32m LOADED`,
-);

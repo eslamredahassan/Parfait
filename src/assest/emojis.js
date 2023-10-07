@@ -1,3 +1,4 @@
+const chalk = require("chalk");
 const moment = require("moment");
 require("moment-duration-format");
 
@@ -173,9 +174,9 @@ module.exports = {
   //--------------------------------------//,
 };
 console.log(
-  `\x1b[0m`,
-  `\x1b[31m 〢`,
-  `\x1b[33m ${moment(Date.now()).format("LT")}`,
-  `\x1b[31m Emojis File`,
-  `\x1b[32m LOADED`,
+  chalk.reset(),
+  chalk.red(` 〢`),
+  chalk.yellow(` ${moment(Date.now()).format("LT")}`),
+  chalk.red(` Emojis File`),
+  chalk.green.bold(` LOADED`),
 );
