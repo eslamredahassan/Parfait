@@ -88,13 +88,20 @@ module.exports = async (client, config) => {
         })
         .then((msg) => msg.unpin());
 
-      //// Send message to rejected member ///
       const ID = interaction.message.embeds[0].footer.text;
       const ap_user = await interaction.guild.members.fetch(ID);
 
-      await ap_user.roles
-        .remove(config.waitRole)
-        .catch(() => console.log("Error 2583"));
+      try {
+        //// Send message to rejected member ///
+        await ap_user.roles
+          .remove(config.waitRole)
+          .catch(() => console.log("Error 2583"));
+      } catch (error) {
+        return await interaction.reply({
+          content: `Error: ${error}`,
+          ephemeral: true,
+        });
+      }
 
       try {
         await ap_user.send({
@@ -106,7 +113,22 @@ module.exports = async (client, config) => {
               .setDescription(reply || messages.reject),
           ],
         });
-      } catch (e) {
+        console.log(
+          `\x1b[0m`,
+          `\x1b[31m 〢`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
+          `\x1b[34m ${ap_user.user.username}`,
+          `\x1b[32m Message has beeen sent`,
+        );
+      } catch (error) {
+        console.log(
+          `\x1b[0m`,
+          `\x1b[31m 〢`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
+          `\x1b[34m Rejection`,
+          `\x1b[32m Error: ${error.message}`,
+        );
+
         return await interaction.reply({
           content: `The ${user} Dms Were Closed.`,
           ephemeral: true,
@@ -127,7 +149,7 @@ module.exports = async (client, config) => {
       /// Console Action ///
       console.log(
         `\x1b[0m`,
-        `\x1b[31m  〢`,
+        `\x1b[31m 〢`,
         `\x1b[33m ${moment(Date.now()).format("lll")}`,
         `\x1b[34m ${ap_user.user.username}`,
         `\x1b[32m REJECTED BY ${interaction.user.username}`,
@@ -157,26 +179,49 @@ module.exports = async (client, config) => {
         //this is the important part
         ephemeral: false,
       });
+      try {
+        let applyChannel = interaction.guild.channels.cache.get(
+          config.applyChannel,
+        );
+        if (!applyChannel) return;
 
-      let applyChannel = interaction.guild.channels.cache.get(
-        config.applyChannel,
-      );
-      if (!applyChannel) return;
+        const user = ap_user.user;
+        const userName = user.username;
 
-      const user = ap_user.user;
-      const userName = user.username;
+        const threadName = applyChannel.threads.cache.find(
+          (x) => x.name === `${"🧤︱" + userName + " Tryout"}`,
+        );
+        /// Rename The Thread ///
+        await threadName.setName("🧤︱" + `${userName}` + " Rejected");
+        /// Lock the thread ///
+        await wait(5000); // ** cooldown 10 seconds ** \\
+        await threadName.setLocked(true);
+        /// Archive the thread ///
+        await wait(8000); // ** cooldown 10 seconds ** \\
+        await threadName.setArchived(true);
 
-      const threadName = applyChannel.threads.cache.find(
-        (x) => x.name === `${"🧤︱" + userName + " Tryout"}`,
-      );
-      /// Rename The Thread ///
-      await threadName.setName("🧤︱" + `${userName}` + " Rejected");
-      /// Lock the thread ///
-      await wait(5000); // ** cooldown 10 seconds ** \\
-      await threadName.setLocked(true);
-      /// Archive the thread ///
-      await wait(8000); // ** cooldown 10 seconds ** \\
-      await threadName.setArchived(true);
+        /// Console Action ///
+        console.log(
+          `\x1b[0m`,
+          `\x1b[31m 〢`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
+          `\x1b[34m ${userName} Thread`,
+          `\x1b[32m Closed And Archived`,
+        );
+      } catch (error) {
+        /// Console Action ///
+        console.log(
+          `\x1b[0m`,
+          `\x1b[31m 〢`,
+          `\x1b[33m ${moment(Date.now()).format("lll")}`,
+          `\x1b[34m ${userName} Thread`,
+          `\x1b[32m Error: ${error.message}`,
+        );
+        return await interaction.reply({
+          content: `Oops! ${error.message}`,
+          ephemeral: true,
+        });
+      }
     }
   });
 };

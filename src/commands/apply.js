@@ -11,7 +11,6 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-const recruitments = require("../../src/database/models/recruitments");
 const messages = require("../assest/messages.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
@@ -68,15 +67,6 @@ module.exports = async (client, config) => {
 
           const threadName = applyChannel.threads.cache.find(
             (x) => x.name === `${"🧤︱" + userName + " Tryout"}`,
-          );
-
-          console.log(
-            `\x1b[0m`,
-            `\x1b[31m 〢`,
-            `\x1b[33m ${moment(Date.now()).format("lll")}`,
-            `\x1b[35m ${interaction.user.username}`,
-            `\x1b[36m TRYING TO`,
-            `\x1b[1m \x1b[32mApply Again `,
           );
 
           if (member.roles.cache.has(config.waitRole))
@@ -210,8 +200,8 @@ module.exports = async (client, config) => {
           embeds: [
             {
               title: `${emojis.cross} Incorrect Age  Format`,
-              description: `${emojis.whiteDot} Your age must be a number, please resend the application`,
-              color: `${color.gray}`,
+              description: `${emojis.threadMark} Your age must be a number, please resend the application`,
+              color: color.gray,
             },
           ],
           ephemeral: true,
@@ -247,12 +237,12 @@ module.exports = async (client, config) => {
 
       const secondRow = new MessageActionRow().addComponents([
         new MessageButton()
-          .setStyle(2)
+          .setStyle(2) //-->> Grey Color
           .setCustomId("#silent_accept")
           .setLabel(`Approve Silently`)
           .setEmoji(emojis.s_accept),
         new MessageButton()
-          .setStyle(2)
+          .setStyle(2) //-->> Grey Color
           .setCustomId("#silent_reject")
           .setLabel("Decline Silently")
           .setEmoji(emojis.s_reject),
@@ -265,7 +255,7 @@ module.exports = async (client, config) => {
 
       const dev = new MessageActionRow().addComponents([
         new MessageButton()
-          .setStyle(2)
+          .setStyle(2) //-->> Grey Color
           .setCustomId("#profile")
           .setLabel(`Dev`)
           .setEmoji(emojis.dev),
@@ -384,7 +374,7 @@ module.exports = async (client, config) => {
 
         await threads.members
           .add(user)
-          .catch(() => console.log("Error Line 3385"));
+          .catch((error) => console.log(error.message));
 
         //// Send reply messge after applying ///
         await interaction.update({
@@ -444,10 +434,10 @@ module.exports = async (client, config) => {
       //// Add Waitlist Role ///
       await interaction.member.roles
         .add(config.waitRole)
-        .catch(() => console.log("Error Line 3478"));
+        .catch((error) => console.log(error.message));
       console.log(
         `\x1b[0m`,
-        `\x1b[31m 🛠`,
+        `\x1b[31m  🛠`,
         `\x1b[33m ${moment(Date.now()).format("lll")}`,
         `\x1b[34m Sun wannabe role added to`,
         `\x1b[34m ${interaction.user.username}`,
