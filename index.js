@@ -1,8 +1,7 @@
-const { Client } = require("discord.js");
+const { Client, Discord } = require("discord.js");
 Client.setMaxListeners(0);
-const { codeBlock } = require("@discordjs/builders");
 
-const discord = require("discord.js");
+const { codeBlock } = require("@discordjs/builders");
 const config = require("./src/config");
 const connect = require("./src/database/connect");
 const ready = require("./src/events/ready");

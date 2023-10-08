@@ -12,6 +12,8 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
+const recruitments = require("../../src/database/models/recruitments");
+
 const packageJSON = require("../../package");
 const responses = require("../assest/responses.js");
 const interface = require("../assest/interface.js");
@@ -143,6 +145,29 @@ module.exports = async (client, config) => {
                 cooldown.delete(interaction.user.id);
               }, 60000);
             }
+          }
+          break;
+        case "dev_test":
+          {
+            run();
+            async function run() {
+              try {
+                const id = interaction.user.id;
+                const username = interaction.user.username;
+
+                await recruitments.find({
+                  ap_user_id: id,
+                  username: username,
+                });
+                console.log(`${recruitments} Added To Database`);
+              } catch (error) {
+                console.log("Error " + error.message);
+              }
+            }
+            interaction.reply({
+              content: `TESTED`,
+              ephemeral: true,
+            });
           }
           break;
         case "status":
