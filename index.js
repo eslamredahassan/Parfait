@@ -1,7 +1,6 @@
 const { Client, Discord } = require("discord.js");
 Client.setMaxListeners(0);
 
-const { codeBlock } = require("@discordjs/builders");
 const config = require("./src/config");
 const connect = require("./src/database/connect");
 const ready = require("./src/events/ready");
@@ -84,30 +83,12 @@ client.on("ready", async () => {
     `\x1b[31m ${client.user.tag}`,
     `\x1b[32m ONLINE`,
   );
-  client.channels.cache
-    .get(`${config.Dev_Log}`)
-    .send(
-      codeBlock(
-        "ini",
-        `〢 ${moment(Date.now()).format("LT")} [ ${client.user.tag} Online ]`,
-      ),
-    );
   console.log(
     `\x1b[31m  〢`,
     `\x1b[33m ${moment(Date.now()).format("LT")}`,
     `\x1b[31m SUN™&Co Smash Legends`,
     `\x1b[32m CHECKED`,
   );
-  client.channels.cache
-    .get(`${config.Dev_Log}`)
-    .send(
-      codeBlock(
-        "ini",
-        `〢 ${moment(Date.now()).format(
-          "LT",
-        )} [ Parfait • IEgyGamerI ᴰᵉᵛ Checked ]`,
-      ),
-    );
 });
 
 client.login(config.token).catch(() => console.log("Invalid Token"));
