@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { MongoClient } = require("mongodb");
 
 async function run() {
   const reqString = {
@@ -7,10 +6,10 @@ async function run() {
     required: true,
   };
   const freezeSchema = new mongoose.Schema({
-    ap_user_id: String,
-    username: String,
-    staff_id: String,
-    reason: String,
+    ap_user_id: reqString,
+    username: reqString,
+    staff_id: reqString,
+    reason: reqString,
     expires: {
       type: Date,
       required: true,
