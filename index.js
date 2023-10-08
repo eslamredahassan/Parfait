@@ -1,4 +1,4 @@
-const { Client, Discord } = require("discord.js");
+const { Client } = require("discord.js");
 Client.setMaxListeners(0);
 
 const config = require("./src/config");
