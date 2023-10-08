@@ -147,29 +147,6 @@ module.exports = async (client, config) => {
             }
           }
           break;
-        case "dev_test":
-          {
-            run();
-            async function run() {
-              try {
-                const id = interaction.user.id;
-                const username = interaction.user.username;
-
-                await recruitments.find({
-                  ap_user_id: id,
-                  username: username,
-                });
-                console.log(`${recruitments} Added To Database`);
-              } catch (error) {
-                console.log("Error " + error.message);
-              }
-            }
-            interaction.reply({
-              content: `TESTED`,
-              ephemeral: true,
-            });
-          }
-          break;
         case "status":
           {
             function uptimeString(seconds) {

@@ -440,27 +440,6 @@ module.exports = async (client, config) => {
         console.log(`Error ` + error.message);
       }
       ////----------------------------////
-      run();
-      async function run() {
-        try {
-          const id = interaction.user.id;
-          const username = interaction.user.username;
-
-          const ap_user = await new recruitments({
-            ap_user_id: id,
-            username: username,
-            user_age: user_age,
-            user_code: user_code,
-            user_ct: user_ct,
-            user_legends: user_legends,
-            user_why: user_why,
-          });
-          ap_user.save();
-          console.log(`${interaction.user.username} Added To Database`);
-        } catch (error) {
-          console.log("Error " + error.message);
-        }
-      }
 
       //// Add Waitlist Role ///
       await interaction.member.roles

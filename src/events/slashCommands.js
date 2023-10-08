@@ -36,11 +36,6 @@ module.exports = async (client, config) => {
         description: `[Dev] Check Parfait latency`,
         type: "CHAT_INPUT",
       },
-      {
-        name: "dev_test",
-        description: `[Dev] Check Parfait latency`,
-        type: "CHAT_INPUT",
-      },
     ]);
   }
   console.log(
