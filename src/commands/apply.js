@@ -6,11 +6,14 @@ const {
   TextInputComponent,
 } = require("discord.js");
 
+const { MongoClient } = require("mongodb");
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
+const recruitments = require("../../src/database/models/recruitments");
+const database = require("../../src/database/connect");
 const messages = require("../assest/messages.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
@@ -207,6 +210,40 @@ module.exports = async (client, config) => {
           ephemeral: true,
         });
       }
+      async function run() {
+        const client = new MongoClient(config.database);
+        try {
+          await client.connect();
+          const database = client.db("parfaitdatabase");
+          const recruitments = database.collection("recruitments");
+          // create a document to insert
+          const ap_user = {
+            ap_id: interaction.user.id,
+            msg_id: interaction.message.id,
+            name: interaction.user.username,
+            code: user_code,
+            competition: user_ct,
+            age: user_age,
+            favorites: user_legends,
+            question: user_why,
+            created_in: new Date(),
+          };
+          const result = await recruitments.insertOne(ap_user);
+          console.log(
+            `\x1b[0m`,
+            `\x1b[32m ├`,
+            `\x1b[31m ${interaction.user.username}`,
+            `\x1b[0m`,
+            `\x1b[33mAPPLICATION ADDED TO`,
+            `\x1b[35m Database`,
+            `\x1b[35 [${result.insertedId}]`,
+          );
+        } finally {
+          await client.close();
+        }
+      }
+      run().catch(console.dir);
+
       let finishChannel = interaction.guild.channels.cache.get(
         config.finishChannel,
       );
@@ -437,7 +474,7 @@ module.exports = async (client, config) => {
         .catch((error) => console.log(error.message));
       console.log(
         `\x1b[0m`,
-        `\x1b[31m  🛠`,
+        `\x1b[31m 🛠`,
         `\x1b[33m ${moment(Date.now()).format("lll")}`,
         `\x1b[34m Sun wannabe role added to`,
         `\x1b[34m ${interaction.user.username}`,

@@ -5,7 +5,8 @@ const chalk = require("chalk");
 
 module.exports = async () => {
   try {
-    await MongoClient.connect(config.database);
+    const client = await MongoClient.connect(config.database);
+    const database = client.db("parfaitdatabase");
     console.log(
       `\x1b[0m`,
       `\x1b[31m 〢`,

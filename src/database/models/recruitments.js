@@ -11,6 +11,6 @@ async function run() {
     user_legends: String,
     user_why: String,
   });
-  module.exports = mongoose.model("ap_user", recruitments);
   run();
+  module.exports = mongoose.model("ap_user", recruitments);
 }

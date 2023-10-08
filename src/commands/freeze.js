@@ -8,6 +8,7 @@ const {
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 
+const freezeSchema = require("../../src/database/models/freeze");
 const banners = require("../assest/banners.js");
 const errors = require("../assest/errors.js");
 const color = require("../assest/color.js");
