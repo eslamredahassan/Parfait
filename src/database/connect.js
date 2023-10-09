@@ -23,4 +23,5 @@ module.exports = async () => {
       `\x1b[323m ERROR: ${error.message}`,
     );
   }
+  return;
 };
