@@ -70,12 +70,6 @@ client.on("ready", async () => {
     client,
     config,
   );
-  //const forward = require(`./src/parfait/forward`)(client, config);
-  //const forward_reply = require(`./src/parfait/forward_reply`)(client, config);
-  //const auto_react = require(`./src/parfait/auto_react`)(client, config);
-  //const sun_ai = require(`./src/parfait/sun_ai`)(client, config);
-  //const mentions = require(`./src/parfait/mentions`)(client, config);
-  //const chat = require(`./src/parfait/chat`)(client, config);
 
   console.log(
     `\x1b[31m  〢`,
