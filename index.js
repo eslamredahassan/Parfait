@@ -3,10 +3,10 @@ Client.setMaxListeners(0);
 
 const config = require("./src/config");
 const connect = require("./src/database/connect");
-const ready = require("./src/events/ready");
-const antiCrash = require("./src/events/antiCrash");
-const slashCommands = require("./src/events/slashCommands");
-const server = require("./src/events/server");
+const ready = require("./src/utils/ready");
+const antiCrash = require("./src/utils/antiCrash");
+const slashCommands = require("./src/utils/slashCommands");
+const server = require("./src/utils/server");
 const logo = require("./src/assest/logo");
 const moment = require("moment");
 const fs = require("fs");
