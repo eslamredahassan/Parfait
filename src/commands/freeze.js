@@ -5,6 +5,7 @@ const {
   TextInputComponent,
 } = require("discord.js");
 
+const { MongoClient } = require("mongodb");
 const moment = require("moment");
 const wait = require("util").promisify(setTimeout);
 
@@ -150,31 +151,54 @@ module.exports = async (client, config) => {
         ephemeral: false,
       });
       //// Try to manage his roles ///
-      try {
-        await ap_user.roles
-          .remove(config.waitRole)
-          .catch(() => console.log("Error Line 134"));
-        await ap_user.roles
-          .add(config.banRole)
-          .catch(() => console.log("Error Line 135"));
-      } catch (err) {
-        console.log(
-          `\x1b[0m`,
-          `\x1b[31m 〢`,
-          `\x1b[33m ${moment(Date.now()).format("lll")}`,
-          `\x1b[34m ${ap_user.user.username} ROLES`,
-          `\x1b[35m Unfounded!`,
-        );
-        throw err;
-      }
-      console.log(
-        `\x1b[0m`,
-        `\x1b[31m 🛠`,
-        `\x1b[33m ${moment(Date.now()).format("lll")}`,
-        `\x1b[33m Sun wannabe role REMOVED`,
-        `\x1b[33m Freeze role ADDED`,
-      );
+      async function run() {
+        const client = new MongoClient(config.database);
+        try {
+          //// Send message to rejected member ///
+          const ID = interaction.message.embeds[0].footer.text;
+          const ap_user = await interaction.guild.members.fetch(ID);
+          await client.connect();
+          const database = client.db("parfaitdatabase");
+          const freeze = database.collection("freeze");
+          // create a document to insert
+          const freeze_user = {
+            ap_user_id: ap_user.id,
+            username: ap_user.user.username,
+            staff_id: interaction.user.id,
+            reason: reason || `no reason`,
+            freeze_role: config.banRole,
+            created_in: new Date(),
+          };
+          const result = await freeze.insertOne(freeze_user);
+          console.log(
+            `\x1b[0m`,
+            `\x1b[32m ├`,
+            `\x1b[31m ${interaction.user.username}`,
+            `\x1b[0m`,
+            `\x1b[33mAPPLICATION ADDED TO`,
+            `\x1b[35m Database`,
+            `\x1b[35 ${result.insertedId}`,
+          );
 
+          await ap_user.roles
+            .remove(config.waitRole)
+            .catch(() => console.log("Error Line 134"));
+          await ap_user.roles
+            .add(config.banRole)
+            .catch(() => console.log("Error Line 135"));
+
+          console.log(
+            `\x1b[0m`,
+            `\x1b[31m 🛠`,
+            `\x1b[33m ${moment(Date.now()).format("lll")}`,
+            `\x1b[33m Sun wannabe role REMOVED\n`,
+            `\x1b[33m Freeze role ADDED`,
+          );
+        } finally {
+          await client.close();
+        }
+      }
+      run().catch(console.dir);
       let applyChannel = interaction.guild.channels.cache.get(
         config.applyChannel,
       );

@@ -10,14 +10,6 @@ async function run() {
     username: reqString,
     staff_id: reqString,
     reason: reqString,
-    expires: {
-      type: Date,
-      required: true,
-    },
-    current: {
-      type: Boolean,
-      required: true,
-    },
     timestaps: true,
   });
   run();
