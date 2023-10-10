@@ -53,10 +53,6 @@ module.exports = async (client, config) => {
                   name: "Close",
                   value: "_closed",
                 },
-                {
-                  name: "Maintenance",
-                  value: "_maintenance",
-                },
               ],
               required: true,
             },

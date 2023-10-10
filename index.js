@@ -32,14 +32,16 @@ client.on("ready", async () => {
   connect(client, config);
 
   // ------ Slash Command ------- //
+  const setup_embed = require(`./src/commands/setup/setup_embed`)(
+    client,
+    config,
+  );
   const setup_open = require(`./src/interface/setup_open`)(client, config);
   const opened = require(`./src/commands/setup/opened`)(client, config);
   const closed = require(`./src/commands/setup/closed`)(client, config);
   const about = require(`./src/commands/about`)(client, config);
-  const _maintenance = require(`./src/commands/setup/maintenance`)(
-    client,
-    config,
-  );
+  const ping = require(`./src/commands/ping`)(client, config);
+  const status = require(`./src/commands/status`)(client, config);
   const setup_close = require(`./src/interface/setup_close`)(client, config);
   const maintenance = require(`./src/interface/maintenance`)(client, config);
   // -------------------------------------//
