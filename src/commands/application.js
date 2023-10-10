@@ -13,7 +13,6 @@ const cooldown = new Set();
 require("moment-duration-format");
 
 const recruitments = require("../../src/database/models/recruitments");
-
 const packageJSON = require("../../package");
 const responses = require("../assest/responses.js");
 const interface = require("../assest/interface.js");
@@ -298,87 +297,6 @@ module.exports = async (client, config) => {
             sendToDev_modal.addComponents(row_usermessage);
             await interaction.showModal(sendToDev_modal);
           }
-          break;
-        case "about":
-          {
-            console.log(
-              `\x1b[0m`,
-              `\x1b[31m 〢`,
-              `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[34m ${interaction.user.username} USED`,
-              `\x1b[35m About Command`,
-            );
-
-            function uptimeString(seconds) {
-              let days = Math.floor(seconds / (3600 * 24));
-              seconds -= days * 3600 * 24;
-              let hours = Math.floor(seconds / 3600);
-              seconds -= hours * 3600;
-              let minutes = Math.floor(seconds / 60);
-              seconds -= minutes * 60;
-              return `\`\`${days}\`\` Days, \`\`${hours}\`\` Hours, \`\`${minutes}\`\` Minutes, and \`\`${seconds}\`\` seconds`;
-            }
-
-            const aboutParfait = new MessageActionRow().addComponents([
-              new MessageButton()
-                .setStyle("LINK")
-                .setLabel(`⠀Contact with IEgyGamerI`)
-                .setURL(`https://discordapp.com/users/123788535324082178`)
-                .setEmoji(emojis.discord),
-              new MessageButton()
-                .setStyle("LINK")
-                .setLabel(`⠀Parfait Status⠀`)
-                .setURL(`https://parfait.pikapod.net/status/parfait`)
-                .setEmoji(emojis.dev),
-            ]);
-
-            await interaction.reply({
-              embeds: [
-                new MessageEmbed()
-                  .setColor(color.gray)
-                  .setTitle(`${emojis.alert} About ${client.user.tag}`)
-                  .setDescription(interface.aboutMessage)
-                  .setThumbnail(Logo)
-                  .setImage(banners.aboutBanner)
-                  .addFields(
-                    {
-                      name: `${emojis.developer} Programmed by`,
-                      value: fieldsText.programed,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.build} Build`,
-                      value: fieldsText.build,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.version} Version`,
-                      value: fieldsText.version,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.time} Uptime`,
-                      value: `${emojis.threadMark} ${uptimeString(
-                        Math.floor(process.uptime()),
-                      )}`,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.order} Order one for your server`,
-                      value: fieldsText.contact,
-                      inline: false,
-                    },
-                  )
-                  .setFooter({
-                    ///text: `This is for Staff members only, no one else can see it`,
-                    text: `Parfait - Advanced Discord Application Bot`,
-                    iconURL: banners.parfaitIcon,
-                  }),
-              ],
-              ephemeral: true,
-              components: [aboutParfait],
-            });
-          }
           client.on("interactionCreate", async (interaction) => {
             if (interaction.isSelectMenu()) {
               let choice = interaction.values[0];
@@ -413,13 +331,6 @@ module.exports = async (client, config) => {
               }
             }
           });
-          break;
-        default:
-          interaction.reply({
-            content: `command not found ${interaction.commandName}`,
-            ephemeral: true,
-          });
-          break;
       }
     }
     if (interaction.customId === "report_modal") {

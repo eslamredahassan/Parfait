@@ -5,12 +5,12 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-const interface = require("../assest/interface");
-const fieldsText = require("../assest/fieldsText");
-const responses = require("../assest/responses");
-const banners = require("../assest/banners.js");
-const color = require("../assest/color.js");
-const emojis = require("../assest/emojis");
+const interface = require("../../assest/interface");
+const fieldsText = require("../../assest/fieldsText");
+const responses = require("../../assest/responses");
+const banners = require("../../assest/banners.js");
+const color = require("../../assest/color.js");
+const emojis = require("../../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
@@ -18,7 +18,7 @@ module.exports = async (client, config) => {
 
   client.on("interactionCreate", async (interaction) => {
     const choice = interaction.options.getString("modes");
-    if (choice == "setup_open") {
+    if (choice == "_opened") {
       const Messages = [
         `${responses.lazy}`,
         `${responses.know}`,
@@ -77,46 +77,52 @@ module.exports = async (client, config) => {
         const perms = [`${config.devRole}`, `${config.devRoleTest}`];
         let staff = guild.members.cache.get(interaction.user.id);
         if (staff.roles.cache.hasAny(...perms)) {
-          applyChannel.send({
-            embeds: [
-              new MessageEmbed()
-                .setColor(color.gray)
-                .setTitle(
-                  `${emojis.app} ${interaction.guild.name}\n${emojis.threadMark}Recruitments Application System`,
-                )
-                .setDescription(interface.MainUImessage)
-                .setThumbnail(Logo)
-                .setImage(banners.openBanner)
-                .addFields(
-                  {
-                    name: `${emojis.r_rank} Required Rank`,
-                    value: fieldsText.rank,
-                    inline: true,
-                  },
-                  {
-                    name: `${emojis.r_level} Required Level`,
-                    value: fieldsText.level,
-                    inline: true,
-                  },
-                ),
-            ],
-            components: [buttons],
-          });
-          await interaction.reply({
-            embeds: [
-              {
-                title: `${emojis.check} Opened Interface`,
-                description: `${emojis.threadMark} Opened Interface has been set up in ${applyChannel}`,
-                //thumbnail: { url: banners.setupIcon },
-                color: color.gray,
-              },
-            ],
-            //this is the important part
-            ephemeral: true,
-            components: [],
-          });
+          try {
+            await applyChannel.send({
+              embeds: [
+                new MessageEmbed()
+                  .setColor(color.gray)
+                  .setTitle(
+                    `${emojis.app} ${interaction.guild.name}\n${emojis.threadMark}Recruitments Application System`,
+                  )
+                  .setDescription(interface.MainUImessage)
+                  .setThumbnail(Logo)
+                  .setImage(banners.openBanner)
+                  .addFields(
+                    {
+                      name: `${emojis.r_rank} Required Rank`,
+                      value: fieldsText.rank,
+                      inline: true,
+                    },
+                    {
+                      name: `${emojis.r_level} Required Level`,
+                      value: fieldsText.level,
+                      inline: true,
+                    },
+                  ),
+              ],
+              components: [buttons],
+            });
+
+            await interaction.reply({
+              embeds: [
+                {
+                  title: `${emojis.check} Opened Interface`,
+                  description: `${emojis.threadMark} Opened Interface has been set up in ${applyChannel}`,
+                  //thumbnail: { url: banners.setupIcon },
+                  color: color.gray,
+                },
+              ],
+              //this is the important part
+              ephemeral: true,
+              fetchreply: true,
+              components: [],
+            });
+          } catch (error) {
+            console.log(error.message);
+          }
         } else {
-          await interaction
+          return await interaction
             .reply({
               embeds: [
                 {

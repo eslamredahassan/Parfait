@@ -8,6 +8,7 @@ const antiCrash = require("./src/utils/antiCrash");
 const slashCommands = require("./src/utils/slashCommands");
 const server = require("./src/utils/server");
 const logo = require("./src/assest/logo");
+const GuildMemberAdd = require("./src/events/GuildMemberAdd");
 const moment = require("moment");
 const fs = require("fs");
 
@@ -32,24 +33,31 @@ client.on("ready", async () => {
 
   // ------ Slash Command ------- //
   const setup_open = require(`./src/interface/setup_open`)(client, config);
+  const opened = require(`./src/commands/setup/opened`)(client, config);
+  const closed = require(`./src/commands/setup/closed`)(client, config);
+  const about = require(`./src/commands/about`)(client, config);
+  const _maintenance = require(`./src/commands/setup/maintenance`)(
+    client,
+    config,
+  );
   const setup_close = require(`./src/interface/setup_close`)(client, config);
   const maintenance = require(`./src/interface/maintenance`)(client, config);
   // -------------------------------------//
 
   // ------ Application Interactions ------- //
   const application = require(`./src/commands/application`)(client, config);
-  const apply = require(`./src/commands/apply`)(client, config);
-  const accept = require(`./src/commands/accept`)(client, config);
-  const silent_accept = require(`./src/commands/silent_accept`)(client, config);
-  const promote = require(`./src/commands/promote`)(client, config);
-  const reject = require(`./src/commands/reject`)(client, config);
-  const silent_reject = require(`./src/commands/silent_reject`)(client, config);
-  const aplogize = require(`./src/commands/apologize`)(client, config);
-  const freeze = require(`./src/commands/freeze`)(client, config);
-  const requirements = require(`./src/commands/requirements`)(client, config);
-  const answer_yes = require(`./src/commands/answer_yes`)(client, config);
-  const answer_no = require(`./src/commands/answer_no`)(client, config);
-  const reply = require(`./src/commands/reply`)(client, config);
+  const apply = require(`./src/buttons/apply`)(client, config);
+  const accept = require(`./src/buttons/accept`)(client, config);
+  const silent_accept = require(`./src/buttons/silent_accept`)(client, config);
+  const promote = require(`./src/buttons/promote`)(client, config);
+  const reject = require(`./src/buttons/reject`)(client, config);
+  const silent_reject = require(`./src/buttons/silent_reject`)(client, config);
+  const aplogize = require(`./src/buttons/apologize`)(client, config);
+  const freeze = require(`./src/buttons/freeze`)(client, config);
+  const requirements = require(`./src/buttons/requirements`)(client, config);
+  const answer_yes = require(`./src/buttons/answer_yes`)(client, config);
+  const answer_no = require(`./src/buttons/answer_no`)(client, config);
+  const reply = require(`./src/buttons/reply`)(client, config);
   // -------------------------------------//
 
   // ------------ Select Menu ------------ //

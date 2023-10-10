@@ -46,16 +46,16 @@ module.exports = async (client, config) => {
               type: "STRING",
               choices: [
                 {
-                  name: "Opened Interface",
-                  value: "setup_open",
+                  name: "Open",
+                  value: "_opened",
                 },
                 {
-                  name: "Closed Interface",
-                  value: "closed",
+                  name: "Close",
+                  value: "_closed",
                 },
                 {
-                  name: "Maintenance Interface",
-                  value: "closed",
+                  name: "Maintenance",
+                  value: "_maintenance",
                 },
               ],
               required: true,
