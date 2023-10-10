@@ -36,18 +36,18 @@ client.on("ready", async () => {
     client,
     config,
   );
-  const open = require(`./src/command/setup/setup_open`)(client, config);
+  const open = require(`./src/commands/setup/open`)(client, config);
   const about = require(`./src/commands/about`)(client, config);
   const ping = require(`./src/commands/ping`)(client, config);
   const status = require(`./src/commands/status`)(client, config);
-  const close = require(`./src/command/setup/setup_close`)(client, config);
-  const maintenance = require(`./src/command/setup/maintenance`)(
+  const close = require(`./src/commands/setup/close`)(client, config);
+  const maintenance = require(`./src/commands/setup/maintenance`)(
     client,
     config,
   );
   // -------------------------------------//
 
-  // ------ Application Interactions ------- //
+  // ------ Buttons Interactions ------- //
   const application = require(`./src/commands/application`)(client, config);
   const apply = require(`./src/buttons/apply`)(client, config);
   const accept = require(`./src/buttons/accept`)(client, config);

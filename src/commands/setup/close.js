@@ -5,12 +5,12 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
-const interface = require("../assest/interface");
-const responses = require("../assest/responses");
-const fieldsText = require("../assest/fieldsText");
-const banners = require("../assest/banners");
-const color = require("../assest/color");
-const emojis = require("../assest/emojis");
+const interface = require("../../assest/interface");
+const responses = require("../../assest/responses");
+const fieldsText = require("../../assest/fieldsText");
+const banners = require("../../assest/banners");
+const color = require("../../assest/color");
+const emojis = require("../../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);

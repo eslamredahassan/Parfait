@@ -9,11 +9,11 @@ const {
 const moment = require("moment");
 require("moment-duration-format");
 
-const fieldsText = require("../assest/fieldsText.js");
-const interface = require("../assest/interface.js");
-const banners = require("../assest/banners.js");
-const color = require("../assest/color.js");
-const emojis = require("../assest/emojis");
+const fieldsText = require("../../assest/fieldsText.js");
+const interface = require("../../assest/interface.js");
+const banners = require("../../assest/banners.js");
+const color = require("../../assest/color.js");
+const emojis = require("../../assest/emojis");
 
 module.exports = async (client, config) => {
   let guild = client.guilds.cache.get(config.guildID);
