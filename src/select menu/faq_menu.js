@@ -48,16 +48,20 @@ module.exports = async (client, config) => {
                   },
                   {
                     label: "Rejected Applications",
+                    description: "Questions related to the applications",
                     value: "Rejecting",
                     emoji: emojis.faq,
                   },
                   {
                     label: "Tryout Process",
+                    description: "Questions related to the tryout process",
                     value: "tryout",
                     emoji: emojis.faq,
                   },
                   {
                     label: "Parfait Bot and General Questions",
+                    description:
+                      "Questions related to Parfait and other questions",
                     value: "parfaitbot",
                     emoji: emojis.faq,
                   },
@@ -105,27 +109,35 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "Applying to Sun Lengeds",
+                        description:
+                          "Questions related to applying and the application process",
                         value: "applying",
                         default: true,
                         emoji: emojis.faq,
                       },
                       {
                         label: "Accepted Applications",
+                        description:
+                          "Questions related to the accepted application plus the following process",
                         value: "Accepting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Rejected Applications",
+                        description: "Questions related to the applications",
                         value: "Rejecting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Tryout Process",
+                        description: "Questions related to the tryout process",
                         value: "tryout",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Parfait Bot and General Questions",
+                        description:
+                          "Questions related to Parfait and other questions",
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
@@ -197,27 +209,35 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "Applying to Sun Lengeds",
+                        description:
+                          "Questions related to applying and the application process",
                         value: "applying",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Accepted Applications",
+                        description:
+                          "Questions related to the accepted application plus the following process",
                         value: "Accepting",
                         default: true,
                         emoji: emojis.faq,
                       },
                       {
                         label: "Rejected Applications",
+                        description: "Questions related to the applications",
                         value: "Rejecting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Tryout Process",
+                        description: "Questions related to the tryout process",
                         value: "tryout",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Parfait Bot and General Questions",
+                        description:
+                          "Questions related to Parfait and other questions",
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
@@ -274,27 +294,35 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "Applying to Sun Lengeds",
+                        description:
+                          "Questions related to applying and the application process",
                         value: "applying",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Accepted Applications",
+                        description:
+                          "Questions related to the accepted application plus the following process",
                         value: "Accepting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Rejected Applications",
+                        description: "Questions related to the applications",
                         value: "Rejecting",
                         default: true,
                         emoji: emojis.faq,
                       },
                       {
                         label: "Tryout Process",
+                        description: "Questions related to the tryout process",
                         value: "tryout",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Parfait Bot and General Questions",
+                        description:
+                          "Questions related to Parfait and other questions",
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
@@ -346,27 +374,35 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "Applying to Sun Lengeds",
+                        description:
+                          "Questions related to applying and the application process",
                         value: "applying",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Accepted Applications",
+                        description:
+                          "Questions related to the accepted application plus the following process",
                         value: "Accepting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Rejected Applications",
+                        description: "Questions related to the applications",
                         value: "Rejecting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Tryout Process",
+                        description: "Questions related to the tryout process",
                         value: "tryout",
                         default: true,
                         emoji: emojis.faq,
                       },
                       {
                         label: "Parfait Bot and General Questions",
+                        description:
+                          "Questions related to Parfait and other questions",
                         value: "parfaitbot",
                         emoji: emojis.faq,
                       },
@@ -433,26 +469,34 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "Applying to Sun Lengeds",
+                        description:
+                          "Questions related to applying and the application process",
                         value: "applying",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Accepted Applications",
+                        description:
+                          "Questions related to the accepted application plus the following process",
                         value: "Accepting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Rejected Applications",
+                        description: "Questions related to the applications",
                         value: "Rejecting",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Tryout Process",
+                        description: "Questions related to the tryout process",
                         value: "tryout",
                         emoji: emojis.faq,
                       },
                       {
                         label: "Parfait Bot and General Questions",
+                        description:
+                          "Questions related to Parfait and other questions",
                         value: "parfaitbot",
                         default: true,
                         emoji: emojis.faq,
