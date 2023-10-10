@@ -45,10 +45,11 @@ client.on("ready", async () => {
     client,
     config,
   );
+  const report_bug = require(`./src/commands/report_bug`)(client, config);
+  const contact_dev = require(`./src/commands/contact_dev`)(client, config);
   // -------------------------------------//
 
   // ------ Buttons Interactions ------- //
-  const application = require(`./src/commands/application`)(client, config);
   const apply = require(`./src/buttons/apply`)(client, config);
   const accept = require(`./src/buttons/accept`)(client, config);
   const silent_accept = require(`./src/buttons/silent_accept`)(client, config);
