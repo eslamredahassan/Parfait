@@ -55,40 +55,42 @@ module.exports = async (client, config) => {
             sendToDev_modal.addComponents(row_usermessage);
             await interaction.showModal(sendToDev_modal);
           }
-          client.on("interactionCreate", async (interaction) => {
-            if (interaction.isSelectMenu()) {
-              let choice = interaction.values[0];
-              if (choice == "A") {
-                const b1 = new MessageActionRow().addComponents([
-                  new MessageButton()
-                    .setStyle("LINK")
-                    .setLabel(`Discord`)
-                    .setURL(`https://discord.gg/ymGenWPwTv`)
-                    .setEmoji(emojis.discordO),
-                ]);
+          break;
+        case "report_bug": {
+          console.log(
+            `\x1b[0m`,
+            `\x1b[31m 〢`,
+            `\x1b[33m ${moment(Date.now()).format("lll")}`,
+            `\x1b[34m ${interaction.user.username} USED`,
+            `\x1b[35m Report Bug Command`,
+          );
+          //// Modal application code ///
+          let report_modal = new Modal()
+            .setTitle(`🐞 Report bug`)
+            .setCustomId(`report_modal`);
 
-                await interaction.reply({
-                  content: "Selected A",
-                  ephemeral: true,
-                  components: [b1],
-                });
-              } else if (choice == "B") {
-                const b2 = new MessageActionRow().addComponents([
-                  new MessageButton()
-                    .setStyle("LINK")
-                    .setLabel(`Discord`)
-                    .setURL(`https://discord.gg/ymGenWPwTv`)
-                    .setEmoji(emojis.discordO),
-                ]);
+          const where = new TextInputComponent()
+            .setCustomId("bug_where")
+            .setLabel(`Which bug you want to report?`.substring(0, 45))
+            .setMinLength(1)
+            .setMaxLength(65)
+            .setRequired(true)
+            .setPlaceholder(`Name the bug or say where you found it`)
+            .setStyle(1);
+          const details = new TextInputComponent()
+            .setCustomId("bug_details")
+            .setLabel(`Type details about this bug`.substring(0, 45))
+            .setMinLength(1)
+            .setMaxLength(365)
+            .setRequired(true)
+            .setPlaceholder(`Type the details here `)
+            .setStyle(2);
 
-                await interaction.reply({
-                  content: "Selected B",
-                  ephemeral: true,
-                  components: [b2],
-                });
-              }
-            }
-          });
+          let row_where = new MessageActionRow().addComponents(where);
+          let row_details = new MessageActionRow().addComponents(details);
+          report_modal.addComponents(row_where, row_details);
+          await interaction.showModal(report_modal);
+        }
       }
     }
     if (interaction.customId === "report_modal") {
