@@ -25,9 +25,9 @@ module.exports = {
   //---| About Parfait UI |---///
   programed: `${emojis.threadMark} ${members.egy}`,
 
-  build: `${emojis.threadMark} \`\`12.6.7\`\``,
+  build: `${emojis.threadMark} \`\`^13.7.0\`\``,
 
-  version: `${emojis.threadMark} \`\`4.6.2\`\``,
+  version: `${emojis.threadMark} \`\`^4.6.2\`\``,
 
   contact: `${emojis.threadMark} Contact with ${members.egy} for all details`,
   //--------------------------------------//,
