@@ -34,11 +34,15 @@ module.exports = async (client, config) => {
                 .addOptions([
                   {
                     label: "Applying to Sun Lengeds",
+                    description:
+                      "Questions related to applying and the application process",
                     value: "applying",
                     emoji: emojis.faq,
                   },
                   {
                     label: "Accepted Applications",
+                    description:
+                      "Questions related to the accepted application plus the following process",
                     value: "Accepting",
                     emoji: emojis.faq,
                   },

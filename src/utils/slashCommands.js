@@ -36,6 +36,32 @@ module.exports = async (client, config) => {
           description: `[Dev] Check Parfait latency`,
           type: "CHAT_INPUT",
         },
+        {
+          name: "new_setup",
+          description: `[Dev] Launch setup menu to choose between open, close and developer modes`,
+          options: [
+            {
+              name: "modes",
+              description: "Choose the mode you want to setup it",
+              type: "STRING",
+              choices: [
+                {
+                  name: "Opened Interface",
+                  value: "setup_open",
+                },
+                {
+                  name: "Closed Interface",
+                  value: "closed",
+                },
+                {
+                  name: "Maintenance Interface",
+                  value: "closed",
+                },
+              ],
+              required: true,
+            },
+          ],
+        },
       ]);
       console.log(
         `\x1b[0m`,

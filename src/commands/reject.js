@@ -194,10 +194,10 @@ module.exports = async (client, config) => {
         /// Rename The Thread ///
         await threadName.setName("🧤︱" + `${userName}` + " Rejected");
         /// Lock the thread ///
-        await wait(5000); // ** cooldown 10 seconds ** \\
+        await wait(1000 * 5); // ** cooldown 10 seconds ** \\
         await threadName.setLocked(true);
         /// Archive the thread ///
-        await wait(8000); // ** cooldown 10 seconds ** \\
+        await wait(1000 * 8); // ** cooldown 10 seconds ** \\
         await threadName.setArchived(true);
 
         /// Console Action ///
