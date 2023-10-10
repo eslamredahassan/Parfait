@@ -36,14 +36,15 @@ client.on("ready", async () => {
     client,
     config,
   );
-  const setup_open = require(`./src/interface/setup_open`)(client, config);
-  const opened = require(`./src/commands/setup/opened`)(client, config);
-  const closed = require(`./src/commands/setup/closed`)(client, config);
+  const open = require(`./src/command/setup/setup_open`)(client, config);
   const about = require(`./src/commands/about`)(client, config);
   const ping = require(`./src/commands/ping`)(client, config);
   const status = require(`./src/commands/status`)(client, config);
-  const setup_close = require(`./src/interface/setup_close`)(client, config);
-  const maintenance = require(`./src/interface/maintenance`)(client, config);
+  const close = require(`./src/command/setup/setup_close`)(client, config);
+  const maintenance = require(`./src/command/setup/maintenance`)(
+    client,
+    config,
+  );
   // -------------------------------------//
 
   // ------ Application Interactions ------- //
