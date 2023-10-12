@@ -1,73 +1,171 @@
-const { MessageActionRow, MessageButton, MessageEmbed } = require("discord.js");
+const {
+  MessageActionRow,
+  MessageSelectMenu,
+  MessageButton,
+} = require("discord.js");
 
 const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
+const moment = require("moment");
 require("moment-duration-format");
 
-const fieldsText = require("../assest/fieldsText.js");
 const banners = require("../assest/banners.js");
 const color = require("../assest/color.js");
 const emojis = require("../assest/emojis");
-const moment = require("moment");
 
 module.exports = async (client, config) => {
-  let guild = client.guilds.cache.get(config.guildID);
-  let Logo = guild.iconURL({ dynamic: true });
-
   client.on("interactionCreate", async (interaction) => {
-    if (interaction.isButton()) {
+    if (interaction.isButton() && !interaction.isSelectMenu()) {
       switch (interaction.customId) {
         case "#answer_yes": {
-          let applyButton = new MessageActionRow().addComponents([
-            new MessageButton()
-              .setStyle("SECONDARY")
-              .setDisabled(false)
-              .setCustomId("#ap_apply")
-              .setLabel("Become a Sun Legend")
-              .setEmoji(emojis.apply),
-          ]);
-
           console.log(
-            `\x1b[0m`,
-            `\x1b[31m 〢`,
+            `\x1b[31m  〢`,
             `\x1b[33m ${moment(Date.now()).format("lll")}`,
-            `\x1b[34m ${interaction.user.username} Answered`,
-            `\x1b[35m Yes for Requirements`,
+            `\x1b[34m${interaction.user.username} ANSWERED`,
+            `\x1b[35m Yes`,
           );
-
-          return await interaction.update({
+          const languges = new MessageActionRow().addComponents(
+            new MessageSelectMenu()
+              .setCustomId("#answer_yes_menu")
+              .setPlaceholder("Choose your language and your region from here")
+              .addOptions([
+                {
+                  label: "[EU] English",
+                  value: "#en_eu",
+                  description: `Select if you're european player`,
+                  emoji: emojis.eu,
+                },
+                {
+                  label: "[NA] English",
+                  value: "#en_na",
+                  description: `Select this if you're north american player`,
+                  emoji: emojis.na,
+                },
+                {
+                  label: "French",
+                  value: "#french",
+                  description: `French people are european by default 👽`,
+                  emoji: emojis.fr,
+                },
+              ]),
+          ); // End of .addComponents()
+          await interaction.update({
             embeds: [
-              new MessageEmbed()
-                .setColor(color.gray)
-                .setTitle(`${emojis.step} Step Two`)
-                .setDescription(
-                  `### ${emojis.check} **You're now ready to apply**`,
-                )
-                //.setThumbnail(Logo)
-                .setImage(banners.stepTwoBanner)
-                .addFields(
-                  {
-                    name: `${emojis.info} Tips`,
-                    value: fieldsText.tipOne,
-                    inline: false,
-                  },
-                  {
-                    name: `${emojis.warning} Warning`,
-                    value: fieldsText.tipTwo,
-                    inline: false,
-                  },
-                )
-                .setFooter({
-                  ///text: `This is for Staff members only, no one else can see it`,
-                  text: interaction.guild.name,
-                  iconURL: banners.parfaitIcon,
-                }),
+              {
+                title: `Languages and your regions`,
+                description: `- This will give you access to specific rooms based on your region`,
+                image: { url: banners.langBanner },
+                color: color.gray,
+              },
             ],
+            //this is the important part
             ephemeral: true,
-            components: [applyButton],
+            components: [languges],
+          });
+          client.on("interactionCreate", async (interaction) => {
+            if (interaction.isSelectMenu("#answer_yes_menu")) {
+              let langChoice = interaction.values[0];
+              if (langChoice == "#en_eu") {
+                let applyButton = new MessageActionRow().addComponents([
+                  new MessageButton()
+                    .setStyle("SECONDARY")
+                    .setDisabled(false)
+                    .setCustomId("#ap_apply")
+                    .setLabel("Become a Sun Legend")
+                    .setEmoji(emojis.apply),
+                ]);
+
+                console.log(
+                  `\x1b[31m  〢`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m ${interaction.user.username} CHOOSED`,
+                  `\x1b[35m English Europ`,
+                );
+
+                await interaction.update({
+                  embeds: [
+                    {
+                      title: `You're now ready to apply`,
+                      description: `Press **Become a Sun Legend** and then fill out your application`,
+                      image: { url: banners.readyBanner },
+                      color: color.gray,
+                    },
+                  ],
+                  //this is the important part
+                  ephemeral: true,
+                  components: [applyButton],
+                });
+
+                await interaction.member.roles.add(config.en_eu);
+              } else if (langChoice == "#en_na") {
+                console.log(
+                  `\x1b[31m  〢`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m ${interaction.user.username} CHOOSED`,
+                  `\x1b[35m English NA`,
+                );
+
+                const applyButton = new MessageActionRow().addComponents([
+                  new MessageButton()
+                    .setStyle("SECONDARY")
+                    .setDisabled(true)
+                    .setCustomId("#ap_apply")
+                    .setLabel("Become a Sun Legend")
+                    .setEmoji(emojis.apply),
+                ]);
+
+                await interaction.update({
+                  embeds: [
+                    {
+                      title: `Unfortunately`,
+                      description: `- Unfortunately, only European players are allowed to apply for now\n- Anyway, you've got <@&${config.en_na}> role\n - You'll know we open the recruitment for North American players`,
+                      image: { url: banners.sorryBanner },
+                      color: color.gray,
+                    },
+                  ],
+                  //this is the important part
+                  ephemeral: true,
+                  components: [],
+                });
+
+                await interaction.member.roles.add(config.en_na);
+              } else if (langChoice == "#french") {
+                console.log(
+                  `\x1b[31m  〢`,
+                  `\x1b[33m ${moment(Date.now()).format("lll")}`,
+                  `\x1b[34m ${interaction.user.username} CHOOSED`,
+                  `\x1b[35m French`,
+                );
+
+                const applyButton = new MessageActionRow().addComponents([
+                  new MessageButton()
+                    .setStyle("SECONDARY")
+                    .setDisabled(false)
+                    .setCustomId("#ap_apply")
+                    .setLabel("Become a Sun Legend")
+                    .setEmoji(emojis.apply),
+                ]);
+
+                await interaction.update({
+                  embeds: [
+                    {
+                      title: `You're now ready to apply`,
+                      description: `Press **Become a Sun Legend** and then fill out your application`,
+                      image: { url: banners.readyBanner },
+                      color: color.gray,
+                    },
+                  ],
+                  //this is the important part
+                  ephemeral: true,
+                  components: [applyButton],
+                });
+
+                await interaction.member.roles.add(config.fr);
+              }
+            }
           });
         }
         default:
+          return;
       }
     }
   });

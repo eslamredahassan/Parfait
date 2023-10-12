@@ -32,6 +32,12 @@ module.exports = {
   waitRole: process.env.waitRole,
   //--------------------------------------//
 
+  //------| Languages Roles |------//
+  en_eu: process.env.en_eu,
+  en_na: process.env.en_na,
+  fr: process.env.fr,
+  //--------------------------------------//,
+
   //---| accepted embed messages rooms |---//
   recruitmentChannel: process.env.recruitmentChannel,
   announcesChannel: process.env.announcesChannel,
