@@ -81,7 +81,13 @@ module.exports = async (client, config) => {
                   `\x1b[35m English Europ`,
                 );
 
-                await interaction.update({
+                try {
+                  await interaction.member.roles.add(config.en_eu);
+                } catch (error) {
+                  console.log(error.message);
+                }
+
+                return await interaction.update({
                   embeds: [
                     {
                       title: `You're now ready to apply`,
@@ -94,8 +100,6 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [applyButton],
                 });
-
-                await interaction.member.roles.add(config.en_eu);
               } else if (langChoice == "#en_na") {
                 console.log(
                   `\x1b[31m  〢`,
@@ -113,7 +117,13 @@ module.exports = async (client, config) => {
                     .setEmoji(emojis.apply),
                 ]);
 
-                await interaction.update({
+                try {
+                  await interaction.member.roles.add(config.en_na);
+                } catch (error) {
+                  console.log(error.message);
+                }
+
+                return await interaction.update({
                   embeds: [
                     {
                       title: `Unfortunately`,
@@ -126,8 +136,6 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [],
                 });
-
-                await interaction.member.roles.add(config.en_na);
               } else if (langChoice == "#french") {
                 console.log(
                   `\x1b[31m  〢`,
@@ -145,7 +153,13 @@ module.exports = async (client, config) => {
                     .setEmoji(emojis.apply),
                 ]);
 
-                await interaction.update({
+                try {
+                  await interaction.member.roles.add(config.fr);
+                } catch (error) {
+                  console.log(error.message);
+                }
+
+                return await interaction.update({
                   embeds: [
                     {
                       title: `You're now ready to apply`,
@@ -158,8 +172,6 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [applyButton],
                 });
-
-                await interaction.member.roles.add(config.fr);
               }
             }
           });
