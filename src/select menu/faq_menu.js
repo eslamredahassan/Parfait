@@ -560,7 +560,6 @@ module.exports = async (client, config) => {
             }
           });
           break;
-        default:
       }
     }
   });

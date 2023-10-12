@@ -5,8 +5,6 @@ const {
 } = require("discord.js");
 
 const moment = require("moment");
-const wait = require("util").promisify(setTimeout);
-const cooldown = new Set();
 require("moment-duration-format");
 
 const fieldsText = require("../assest/fieldsText.js");
@@ -37,27 +35,27 @@ module.exports = async (client, config) => {
                 .addOptions([
                   {
                     label: "About Sun Community",
-                    value: "ASC",
+                    value: "#about_sun",
                     emoji: emojis.aboutSun,
                   },
                   {
                     label: "Hall of fame for tourney wins",
-                    value: "HOFFTW",
+                    value: "#hall_of_fame",
                     emoji: emojis.otherAchv,
                   },
                   {
                     label: "Sun Leaders",
-                    value: "SL",
+                    value: "#sun_leaders",
                     emoji: emojis.leader,
                   },
                   {
                     label: "Staff Members",
-                    value: "SM",
+                    value: "#sun_staff_members",
                     emoji: emojis.staff,
                   },
                   {
                     label: "Our Partners",
-                    value: "OP",
+                    value: "#our_partners",
                     emoji: emojis.partner,
                   },
                 ]),
@@ -91,7 +89,7 @@ module.exports = async (client, config) => {
           client.on("interactionCreate", async (interaction) => {
             if (interaction.isSelectMenu()) {
               let choice = interaction.values[0];
-              if (choice == "ASC") {
+              if (choice == "#about_sun") {
                 const controll = new MessageActionRow().addComponents([
                   new MessageButton()
                     .setStyle(5)
@@ -103,12 +101,14 @@ module.exports = async (client, config) => {
                   new MessageButton()
                     .setStyle(5)
                     .setLabel(`Twitch`)
-                    .setURL(`https://www.twitch.tv/suncosmash`)
+                    .setURL(`https://www.twitch.tv/sunco#sun_staff_membersash`)
                     .setEmoji(emojis.twitch),
                   new MessageButton()
                     .setStyle(5)
                     .setLabel(`Battlefy`)
-                    .setURL(`https://battlefy.com/sunco-smash-legends`)
+                    .setURL(
+                      `https://battlefy.com/sunco-#sun_staff_membersash-legends`,
+                    )
                     .setEmoji(emojis.battlefy),
                 ]);
 
@@ -119,28 +119,28 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "About Sun Community",
-                        value: "ASC",
+                        value: "#about_sun",
                         default: true,
                         emoji: emojis.aboutSun,
                       },
                       {
                         label: "Hall of fame for tourney wins",
-                        value: "HOFFTW",
+                        value: "#hall_of_fame",
                         emoji: emojis.otherAchv,
                       },
                       {
                         label: "Sun Leaders",
-                        value: "SL",
+                        value: "#sun_leaders",
                         emoji: emojis.leader,
                       },
                       {
                         label: "Staff Members",
-                        value: "SM",
+                        value: "#sun_staff_members",
                         emoji: emojis.staff,
                       },
                       {
                         label: "Our Partners",
-                        value: "OP",
+                        value: "#our_partners",
                         emoji: emojis.partner,
                       },
                     ]),
@@ -166,7 +166,7 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [controll, aboutmenu],
                 });
-              } else if (choice == "HOFFTW") {
+              } else if (choice == "#hall_of_fame") {
                 const aboutmenu = new MessageActionRow().addComponents(
                   new MessageSelectMenu()
                     .setCustomId("#about-menu")
@@ -174,28 +174,28 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "About Sun Community",
-                        value: "ASC",
+                        value: "#about_sun",
                         emoji: emojis.aboutSun,
                       },
                       {
                         label: "Hall of fame for tourney wins",
-                        value: "HOFFTW",
+                        value: "#hall_of_fame",
                         default: true,
                         emoji: emojis.otherAchv,
                       },
                       {
                         label: "Sun Leaders",
-                        value: "SL",
+                        value: "#sun_leaders",
                         emoji: emojis.leader,
                       },
                       {
                         label: "Staff Members",
-                        value: "SM",
+                        value: "#sun_staff_members",
                         emoji: emojis.staff,
                       },
                       {
                         label: "Our Partners",
-                        value: "OP",
+                        value: "#our_partners",
                         emoji: emojis.partner,
                       },
                     ]),
@@ -221,7 +221,7 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [aboutmenu],
                 });
-              } else if (choice == "SM") {
+              } else if (choice == "#sun_staff_members") {
                 const aboutmenu = new MessageActionRow().addComponents(
                   new MessageSelectMenu()
                     .setCustomId("#about-menu")
@@ -229,28 +229,28 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "About Sun Community",
-                        value: "ASC",
+                        value: "#about_sun",
                         emoji: emojis.aboutSun,
                       },
                       {
                         label: "Hall of fame for tourney wins",
-                        value: "HOFFTW",
+                        value: "#hall_of_fame",
                         emoji: emojis.otherAchv,
                       },
                       {
                         label: "Sun Leaders",
-                        value: "SL",
+                        value: "#sun_leaders",
                         emoji: emojis.leader,
                       },
                       {
                         label: "Staff Members",
-                        value: "SM",
+                        value: "#sun_staff_members",
                         default: true,
                         emoji: emojis.staff,
                       },
                       {
                         label: "Our Partners",
-                        value: "OP",
+                        value: "#our_partners",
                         emoji: emojis.partner,
                       },
                     ]),
@@ -275,7 +275,7 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [aboutmenu],
                 });
-              } else if (choice == "SL") {
+              } else if (choice == "#sun_leaders") {
                 const aboutmenu = new MessageActionRow().addComponents(
                   new MessageSelectMenu()
                     .setCustomId("#about-menu")
@@ -283,28 +283,28 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "About Sun Community",
-                        value: "ASC",
+                        value: "#about_sun",
                         emoji: emojis.aboutSun,
                       },
                       {
                         label: "Hall of fame for tourney wins",
-                        value: "HOFFTW",
+                        value: "#hall_of_fame",
                         emoji: emojis.otherAchv,
                       },
                       {
                         label: "Sun Leaders",
-                        value: "SL",
+                        value: "#sun_leaders",
                         default: true,
                         emoji: emojis.leader,
                       },
                       {
                         label: "Staff Members",
-                        value: "SM",
+                        value: "#sun_staff_members",
                         emoji: emojis.staff,
                       },
                       {
                         label: "Our Partners",
-                        value: "OP",
+                        value: "#our_partners",
                         emoji: emojis.partner,
                       },
                     ]),
@@ -330,7 +330,7 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                   components: [aboutmenu],
                 });
-              } else if (choice == "OP") {
+              } else if (choice == "#our_partners") {
                 const aboutmenu = new MessageActionRow().addComponents(
                   new MessageSelectMenu()
                     .setCustomId("#about-menu")
@@ -338,27 +338,27 @@ module.exports = async (client, config) => {
                     .addOptions([
                       {
                         label: "About Sun Community",
-                        value: "ASC",
+                        value: "#about_sun",
                         emoji: emojis.aboutSun,
                       },
                       {
                         label: "Hall of fame for tourney wins",
-                        value: "HOFFTW",
+                        value: "#hall_of_fame",
                         emoji: emojis.otherAchv,
                       },
                       {
                         label: "Sun Leaders",
-                        value: "SL",
+                        value: "#sun_leaders",
                         emoji: emojis.leader,
                       },
                       {
                         label: "Staff Members",
-                        value: "SM",
+                        value: "#sun_staff_members",
                         emoji: emojis.staff,
                       },
                       {
                         label: "Our Partners",
-                        value: "OP",
+                        value: "#our_partners",
                         default: true,
                         emoji: emojis.partner,
                       },
@@ -389,7 +389,6 @@ module.exports = async (client, config) => {
             }
           });
           break;
-        default:
       }
     }
   });
