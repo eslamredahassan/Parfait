@@ -38,17 +38,17 @@ module.exports = async (client, config) => {
         },
         {
           name: "echo",
-          description: `[Dev] Launch setup menu to choose between open, close and developer modes`,
+          description: `[Dev] Parfait will send your message`,
           options: [
             {
               name: "channel",
-              description: "Choose the mode you want to setup it",
+              description: "Choose channel you want to send your message in",
               type: 7, // CHANNEL
               required: true,
             },
             {
               name: "message",
-              description: "Choose the mode you want to setup it",
+              description: "Type your echo message",
               type: 3, // STRING
               required: true,
               min_length: 2,
