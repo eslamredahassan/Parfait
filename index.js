@@ -48,6 +48,8 @@ client.on("ready", async () => {
   const report_bug = require(`./src/commands/report_bug`)(client, config);
   const contact_dev = require(`./src/commands/contact_dev`)(client, config);
   const echo = require(`./src/commands/echo`)(client, config);
+  const freeze_command = require(`./src/commands/freeze`)(client, config);
+  const unfreeze_command = require(`./src/commands/unfreeze`)(client, config);
   // -------------------------------------//
 
   // ------ Buttons Interactions ------- //

@@ -56,6 +56,46 @@ module.exports = async (client, config) => {
             },
           ],
         },
+        {
+          name: "freeze",
+          description: `[Dev] Freeze a member from applying to SUN`,
+          options: [
+            {
+              name: "who",
+              description: "Mention the member you want to freeze him",
+              type: 6, // MEMBER
+              required: true,
+            },
+            {
+              name: "reason",
+              description: "Type your freeze reason",
+              type: 3, // STRING
+              required: true,
+              min_length: 2,
+              max_length: 1000,
+            },
+          ],
+        },
+        {
+          name: "unfreeze",
+          description: `[Dev] Unfreeze will break the snow and allow the member to applying to SUN again`,
+          options: [
+            {
+              name: "who",
+              description: "Mention the member you want to break his snow",
+              type: 6, // MEMBER
+              required: true,
+            },
+            {
+              name: "reason",
+              description: "Type your unfreeze reason",
+              type: 3, // STRING
+              required: true,
+              min_length: 2,
+              max_length: 1000,
+            },
+          ],
+        },
       ]);
       console.log(
         `\x1b[0m`,

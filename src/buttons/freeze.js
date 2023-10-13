@@ -109,7 +109,7 @@ module.exports = async (client, config) => {
             .setImage(banners.bannedBanner)
             .setDescription(
               reason ||
-                `You have been freezed from the recruitments application system for breaking the rules`,
+                `You have been frozen from the recruitments application system for breaking the rules`,
             ),
         ],
       });
@@ -118,7 +118,7 @@ module.exports = async (client, config) => {
         embeds: [
           {
             title: `${emojis.snow} Freeze Alert`,
-            description: `${emojis.threadMarkmid} You freezed ${ap_user} from the recruitments application system\n${emojis.threadMarkmid} Removed his application from pin list\n${emojis.threadMark} His thread will be automatically archived in \`\`20 Seconds\`\``,
+            description: `${emojis.threadMarkmid} You frozen ${ap_user} from the recruitments application system\n${emojis.threadMarkmid} Removed his application from pin list\n${emojis.threadMark} His thread will be automatically archived in \`\`20 Seconds\`\``,
             color: color.gray,
           },
         ],
@@ -130,12 +130,12 @@ module.exports = async (client, config) => {
       await log.send({
         embeds: [
           {
-            title: `${emojis.log} Freezing Log`,
-            description: `${emojis.snow} ${ap_user.user} have been freezed by ${interaction.user}`,
+            title: `${emojis.log} Freez Log`,
+            description: `${emojis.snow} ${ap_user.user} have been frozen by ${interaction.user}`,
             color: color.gray,
             fields: [
               {
-                name: `${emojis.reason} Freezing Reason`,
+                name: `${emojis.reason} Frozen Reason`,
                 value: reason || `No Reason Found`,
                 inline: false,
               },
