@@ -47,6 +47,7 @@ client.on("ready", async () => {
   );
   const report_bug = require(`./src/commands/report_bug`)(client, config);
   const contact_dev = require(`./src/commands/contact_dev`)(client, config);
+  const echo = require(`./src/commands/echo`)(client, config);
   // -------------------------------------//
 
   // ------ Buttons Interactions ------- //

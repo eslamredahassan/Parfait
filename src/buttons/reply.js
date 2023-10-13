@@ -42,7 +42,29 @@ module.exports = async (client, config) => {
           let row_reply = new MessageActionRow().addComponents(ap_reply);
           reply_modal.addComponents(row_reply);
 
-          await interaction.showModal(reply_modal);
+          const perms = [`${config.devRole}`, `${config.devRoleTest}`];
+          let staff = guild.members.cache.get(interaction.user.id);
+          if (staff.roles.cache.hasAny(...perms)) {
+            await interaction.showModal(reply_modal);
+          } else {
+            await interaction.reply({
+              embeds: [
+                {
+                  title: `${emojis.alert} Permission denied`,
+                  description: errors.permsError,
+                  color: color.gray,
+                },
+              ],
+              //this is the important part
+              ephemeral: true,
+            });
+            console.log(
+              `\x1b[0m`,
+              `\x1b[31m 🛠`,
+              `\x1b[33m ${moment(Date.now()).format("lll")}`,
+              `\x1b[33m Permission denied`,
+            );
+          }
         }
         default:
           break;

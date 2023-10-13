@@ -53,8 +53,6 @@ module.exports = async (client, config) => {
             await interaction.showModal(maintenance_modal);
           }
           break;
-        default:
-          break;
       }
     }
     const answers = { [0]: "Es17lam12Re19da95" };

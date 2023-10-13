@@ -36,6 +36,26 @@ module.exports = async (client, config) => {
           description: `[Dev] Check Parfait latency`,
           type: "CHAT_INPUT",
         },
+        {
+          name: "echo",
+          description: `[Dev] Launch setup menu to choose between open, close and developer modes`,
+          options: [
+            {
+              name: "channel",
+              description: "Choose the mode you want to setup it",
+              type: 7, // CHANNEL
+              required: true,
+            },
+            {
+              name: "message",
+              description: "Choose the mode you want to setup it",
+              type: 3, // STRING
+              required: true,
+              min_length: 2,
+              max_length: 1000,
+            },
+          ],
+        },
       ]);
       console.log(
         `\x1b[0m`,
