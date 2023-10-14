@@ -21,7 +21,7 @@ const client = new Client({
     "MESSAGE_CONTENT",
     "DIRECT_MESSAGES",
   ],
-  partials: ["CHANNEL"],
+  partials: ["CHANNEL", "MESSAGE"],
 });
 
 client.on("ready", async () => {

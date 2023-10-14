@@ -60,5 +60,7 @@ module.exports = {
   commandID: process.env.commandID,
   //--------------------------------------//,
 
-  database: process.env.db
+  //-----------| Database |-----------//
+  database: process.env.db,
+  //--------------------------------------//,
 };
