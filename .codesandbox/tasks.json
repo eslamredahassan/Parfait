@@ -11,7 +11,7 @@
   "tasks": {
     "node .": {
       "name": "Parfait ᴰᴱⱽ",
-      "command": "node .",
+      "command": "node . --trace-warnings",
       "runAtStart": true,
       "preview": {
         "port": 3007

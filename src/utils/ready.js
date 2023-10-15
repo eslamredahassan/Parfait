@@ -1,5 +1,6 @@
 const { Client, ActivityType } = require("discord.js");
 const moment = require("moment");
+const wait = require("util").promisify(setTimeout);
 
 //// Application Sun ///
 
@@ -16,13 +17,17 @@ module.exports = async (client, config) => {
     },
     {
       type: 0, // PLAYING
-      type: 0, // PLAYING
       content: `SMASH LEGENDS`,
       status: "idle",
     },
     {
-      type: 2, // LISTENING
+      type: 0, // PLAYING
       content: `with ${membersCount} Members`,
+      status: "idle",
+    },
+    {
+      type: 2, // LISTENING
+      content: `IEgyGamerI`,
       status: "idle",
     },
     //'PLAYING [0]', 'STREAMING [1]', 'LISTENING [2]', 'WATCHING [3]', 'CUSTOM [4]', 'COMPETING [5]'
