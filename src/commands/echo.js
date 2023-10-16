@@ -63,7 +63,7 @@ module.exports = async (client, config) => {
                 //this is the important part
                 ephemeral: true,
               });
-              console.log(
+              console.warn(
                 `\x1b[0m`,
                 `\x1b[31m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,
