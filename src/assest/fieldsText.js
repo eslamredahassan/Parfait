@@ -9,11 +9,11 @@ module.exports = {
 
   level: `${emojis.level} Level 90+${emojis.required}`,
 
-  cooldownNote: `${emojis.threadMark} You can apply again after cooldown duration`,
+  cooldownNote: `${emojis.threadMarkmid} Apply cooldown \`\`30 days\`\`\ for failed application for the first time \n${emojis.threadMarkmid} The cooldown period will be doubled per rejected application\n${emojis.threadMark} You can apply again after cooldown durationn\n`,
 
-  warning: `${emojis.threadMarkmid} Complete your application inside your thread\n${emojis.threadMarkmid} After applying, stay alert in your thread post\n${emojis.threadMarkmid} Reviewing the application may take a long time\n ${emojis.threadMark} Un-compeleted application will be rejected`,
+  warning: `${emojis.threadMarkmid} Complete your application inside your thread\n${emojis.threadMarkmid} After completing your application, stay alert in your thread\n${emojis.threadMarkmid} Reviewing the application may take a long time\n${emojis.threadMarkmid} Make sure your DM is opened, we may message you\n${emojis.threadMark} Incompeleted application will be rejected`,
 
-  importantNote: `${emojis.threadMark} Required rank isn't important in the first week of each season`,
+  importantNote: `${emojis.threadMark} Required rank isn't important in the first week of each season ⠀`,
   //--------------------------------------//,
 
   ///---| DM Messages |---///
@@ -63,6 +63,7 @@ module.exports = {
   withoutApply: `- No you can't, you need to apply first`,
   multipleAcconts: `- No you can't, since the in-game clan is limited`,
   joinAnotherClan: `- It's up to you, you will only be charged on your main account (account that you used to apply to Sun)`,
+  inCooldownPeriod: `- You'll be in the cooldown period`,
   inPeriodTrial: `- You'll be in the trial period`,
   periodTrial: `- The trial period is the last test period\n - You need to prove yourself as a Sun member`,
   doInPeriod: `- Join the other Sun members and play together\n - Be active on the Discord server\n - Join Sun training\n - Join the tournaments and competitions like Sun Battlefield`,

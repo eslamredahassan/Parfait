@@ -13,60 +13,60 @@ module.exports = async (client, config) => {
   client.on("interactionCreate", async (interaction) => {
     if (interaction.isButton()) {
       switch (interaction.customId) {
-        case "#ap_reply": {
-          console.log(
-            `\x1b[0m`,
-            `\x1b[31m 🛠`,
-            `\x1b[33m ${moment(Date.now()).format("lll")}`,
-            `\x1b[34m ${interaction.user.username} USED`,
-            `\x1b[35m Reply Button`,
-          );
-
-          const footerID = interaction.message.embeds[0].footer.text;
-          const user = await interaction.guild.members.fetch(footerID);
-
-          //// Modal application code ///
-          let reply_modal = new Modal()
-            .setTitle(`Send message to ${user.user.username}`)
-            .setCustomId(`reply_modal`);
-
-          const ap_reply = new TextInputComponent()
-            .setCustomId("ap_reply")
-            .setLabel(`Direct Messaging box`.substring(0, 45))
-            .setMinLength(1)
-            .setMaxLength(365)
-            .setRequired(true)
-            .setPlaceholder(`Type your message here`)
-            .setStyle(2);
-
-          let row_reply = new MessageActionRow().addComponents(ap_reply);
-          reply_modal.addComponents(row_reply);
-
-          const perms = [`${config.devRole}`, `${config.devRoleTest}`];
-          let staff = guild.members.cache.get(interaction.user.id);
-          if (staff.roles.cache.hasAny(...perms)) {
-            await interaction.showModal(reply_modal);
-          } else {
-            await interaction.reply({
-              embeds: [
-                {
-                  title: `${emojis.alert} Permission denied`,
-                  description: errors.permsError,
-                  color: color.gray,
-                },
-              ],
-              //this is the important part
-              ephemeral: true,
-            });
+        case "#ap_reply":
+          {
             console.log(
               `\x1b[0m`,
               `\x1b[31m 🛠`,
               `\x1b[33m ${moment(Date.now()).format("lll")}`,
-              `\x1b[33m Permission denied`,
+              `\x1b[34m ${interaction.user.username} USED`,
+              `\x1b[35m Reply Button`,
             );
+
+            const footerID = interaction.message.embeds[0].footer.text;
+            const user = await interaction.guild.members.fetch(footerID);
+
+            //// Modal application code ///
+            let reply_modal = new Modal()
+              .setTitle(`Send message to ${user.user.username}`)
+              .setCustomId(`reply_modal`);
+
+            const ap_reply = new TextInputComponent()
+              .setCustomId("ap_reply")
+              .setLabel(`Direct Messaging box`.substring(0, 45))
+              .setMinLength(1)
+              .setMaxLength(365)
+              .setRequired(true)
+              .setPlaceholder(`Type your message here`)
+              .setStyle(2);
+
+            let row_reply = new MessageActionRow().addComponents(ap_reply);
+            reply_modal.addComponents(row_reply);
+
+            const perms = [`${config.devRole}`, `${config.devRoleTest}`];
+            let staff = guild.members.cache.get(interaction.user.id);
+            if (staff.roles.cache.hasAny(...perms)) {
+              await interaction.showModal(reply_modal);
+            } else {
+              await interaction.reply({
+                embeds: [
+                  {
+                    title: `${emojis.alert} Permission denied`,
+                    description: errors.permsError,
+                    color: color.gray,
+                  },
+                ],
+                //this is the important part
+                ephemeral: true,
+              });
+              console.log(
+                `\x1b[0m`,
+                `\x1b[31m 🛠`,
+                `\x1b[33m ${moment(Date.now()).format("lll")}`,
+                `\x1b[33m Permission denied`,
+              );
+            }
           }
-        }
-        default:
           break;
       }
     }
@@ -136,7 +136,7 @@ module.exports = async (client, config) => {
             {
               title: `${emojis.check} Message Sent`,
               description: `${emojis.threadMark} Your message has been sent to ${user}`,
-              color: `${color.gray}`,
+              color: color.gray,
               fields: [
                 {
                   name: `${emojis.email} Message Content:`,
@@ -154,7 +154,13 @@ module.exports = async (client, config) => {
         });
       } catch (e) {
         return await interaction.reply({
-          content: `The ${user} Dms Were Closed.`,
+          embeds: [
+            {
+              title: `${emojis.check} Message Sent`,
+              description: `${emojis.threadMark} The ${user} Dms Were Closed`,
+              color: color.gray,
+            },
+          ],
           ephemeral: true,
         });
       }

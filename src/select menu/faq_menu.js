@@ -346,7 +346,7 @@ module.exports = async (client, config) => {
                       fields: [
                         {
                           name: `What will happen when my application gets rejected?`,
-                          value: fieldsText.inPeriodTrial,
+                          value: fieldsText.inCooldownPeriod,
                           inline: false,
                         },
                         {
