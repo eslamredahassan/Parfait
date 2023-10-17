@@ -41,44 +41,47 @@ module.exports = async (client, config) => {
 
             const discordJSVersion = packageJSON.dependencies["discord.js"];
 
+            const parfaitServiceStatus = new MessageEmbed()
+              .setColor(color.gray)
+              .setTitle(`${emojis.alert} ${client.user.username} status`)
+              .setDescription("")
+              //.setThumbnail(banners.parfaitIcon)
+              //.setImage(banners.aboutBanner)
+              .addFields(
+                {
+                  name: `${emojis.nodejs} Discord.js version`,
+                  value: `${emojis.threadMark} ${discordJSVersion}`,
+                  inline: true,
+                },
+                {
+                  name: `${emojis.cpu} Used memory`,
+                  value: `${emojis.threadMark} ${getpercentage}`,
+                  inline: true,
+                },
+                {
+                  name: `${emojis.db} Database`,
+                  value: `${emojis.threadMark} Connected ⠀⠀⠀⠀⠀⠀⠀`,
+                  inline: true,
+                },
+              );
+
+            const upTimeStatus = new MessageEmbed()
+              .setColor(color.gray)
+              .setTitle(`${emojis.time} Uptime`)
+              .setDescription(
+                `${emojis.threadMark} ${uptimeString(
+                  Math.floor(process.uptime()),
+                )}`,
+              )
+              //.setThumbnail(Logo)
+              .setImage(banners.aboutBanner)
+              .setFooter({
+                ///text: `This is for Staff members only, no one else can see it`,
+                text: `Parfait - Advanced Discord Application Manager Bot`,
+                iconURL: banners.parfaitIcon,
+              });
             await interaction.reply({
-              embeds: [
-                new MessageEmbed()
-                  .setColor(color.gray)
-                  .setTitle(`${emojis.alert} ${client.user.username} status`)
-                  .setDescription("")
-                  //.setThumbnail(Logo)
-                  .setImage(banners.aboutBanner)
-                  .addFields(
-                    {
-                      name: `${emojis.nodejs} Discord.js version`,
-                      value: `${emojis.threadMark} ${discordJSVersion}`,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.cpu} Used memory`,
-                      value: `${emojis.threadMark} ${getpercentage}`,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.db} Database`,
-                      value: `${emojis.threadMark} Connected`,
-                      inline: true,
-                    },
-                    {
-                      name: `${emojis.time} Uptime`,
-                      value: `${emojis.threadMark} ${uptimeString(
-                        Math.floor(process.uptime()),
-                      )}`,
-                      inline: false,
-                    },
-                  )
-                  .setFooter({
-                    ///text: `This is for Staff members only, no one else can see it`,
-                    text: `Parfait - Advanced Discord Application Manager Bot`,
-                    iconURL: banners.parfaitIcon,
-                  }),
-              ],
+              embeds: [parfaitServiceStatus, upTimeStatus],
               ephemeral: true,
               components: [],
             });
