@@ -10,7 +10,7 @@ const server = require("./src/utils/server");
 const logo = require("./src/assest/logo");
 const GuildMemberAdd = require("./src/events/GuildMemberAdd");
 const moment = require("moment");
-const fs = require("fs");
+//const fs = require("fs");
 
 const client = new Client({
   intents: [
