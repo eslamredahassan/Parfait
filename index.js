@@ -101,4 +101,4 @@ client.on("ready", async () => {
   );
 });
 
-client.login(config.token).catch(() => console.log("Invalid Token"));
+client.login(config.token).catch((error) => console.error(error.message));
