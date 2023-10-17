@@ -9,13 +9,13 @@ module.exports = {
 
   level: `${emojis.level} Level 90+${emojis.required}`,
 
-  cooldownNote: `${emojis.threadMarkmid} Apply cooldown \`\`30 days\`\`\ for failed application for the first time \n${emojis.threadMarkmid} The cooldown period will be doubled per rejected application\n${emojis.threadMark} You can apply again after cooldown durationn\n`,
+  cooldownNote: `${emojis.threadMarkmid} We apply a cooldown **30 days** for failed application for first time\n${emojis.threadMarkmid} The cooldown period will be doubled per rejected application\n${emojis.threadMark} You can apply again after cooldown duration\n`,
 
   warning: `${emojis.threadMarkmid} Complete your application inside your thread\n${emojis.threadMarkmid} After completing your application, stay alert in your thread\n${emojis.threadMarkmid} Reviewing the application may take a long time\n${emojis.threadMarkmid} Make sure your DM is opened, we may message you\n${emojis.threadMark} Incompeleted application will be rejected`,
 
-  importantNote: `${emojis.threadMark} Required rank isn't important in the first week of each season ⠀`,
+  importantNote: `${emojis.threadMark} Required rank isn't important in **the first week of each season**⠀`,
   //--------------------------------------//,
-
+  
   ///---| DM Messages |---///
   clanCode: `${emojis.threadMark} ||**v7q0itgratob**||`,
 
