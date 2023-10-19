@@ -5,6 +5,7 @@ const wait = require("util").promisify(setTimeout);
 const cooldown = new Set();
 require("moment-duration-format");
 
+const banners = require("../assest/banners.js");
 const errors = require("../../src/assest/errors.js");
 const color = require("../../src/assest/color.js");
 const emojis = require("../../src/assest/emojis");
@@ -22,14 +23,11 @@ module.exports = async (client, config) => {
             const echoMessage = interaction.options.getString("message");
             let echoChannel = interaction.guild.channels.cache.get(channel);
 
-            const perms = [`${config.devRole}`, `${config.devRoleTest}`];
+            const perms = [`${config.devRole}`, `${config.STAFF}`];
             let staff = guild.members.cache.get(interaction.user.id);
             if (staff.roles.cache.hasAny(...perms)) {
               try {
                 // Send Echo Message To Mentioned Room
-                await echoChannel.sendTyping();
-                await wait(1000 * 1);
-
                 await echoChannel.send(echoMessage);
                 await interaction.reply({
                   embeds: [
@@ -49,7 +47,17 @@ module.exports = async (client, config) => {
                   ephemeral: true,
                 });
               } catch (error) {
-                console.log(error.message);
+                await interaction.reply({
+                  embeds: [
+                    {
+                      title: `${emojis.alert} Oops!`,
+                      description: `${emojis.threadMark} I don't have access to ${echoChannel} channel`,
+                      color: color.gray,
+                    },
+                  ],
+                  //this is the important part
+                  ephemeral: true,
+                });
               }
             } else {
               await interaction.reply({
@@ -63,7 +71,7 @@ module.exports = async (client, config) => {
                 //this is the important part
                 ephemeral: true,
               });
-              console.warn(
+              console.log(
                 `\x1b[0m`,
                 `\x1b[31m 🛠`,
                 `\x1b[33m ${moment(Date.now()).format("lll")}`,

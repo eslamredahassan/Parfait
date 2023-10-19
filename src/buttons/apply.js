@@ -266,67 +266,70 @@ module.exports = async (client, config) => {
       ]);
 
       /// Embed of data in review room ///
-      await finishChannel
-        .send({
-          embeds: [
-            new MessageEmbed()
-              .setColor(color.gray)
-              .setTitle(`${emojis.app} Requests to join SUN`)
-              .setAuthor({
-                name: interaction.user.username,
-                iconURL: interaction.user.displayAvatarURL(),
-              })
-              .setDescription(` `)
-              .setThumbnail(banners.appResultIcon)
-              .setImage(banners.appResultBanner)
-              .addFields([
-                {
-                  name: `${emojis.discord} Discord Profile`,
-                  value: `${emojis.threadMark} ${interaction.user}`,
-                  inline: true,
-                },
-                {
-                  name: `${emojis.id} Smash Code`,
-                  value: `${emojis.threadMark} ||\`\`${user_code}\`\`||`,
-                  inline: true,
-                },
-                {
-                  name: `${emojis.competition} Competitions/Trainings`,
-                  value: `${emojis.threadMark} \`\`${user_ct}\`\``,
-                  inline: false,
-                },
-                {
-                  name: `${emojis.age} Age`,
-                  value: `${emojis.threadMark} ||\`\`${user_age}\`\`|| Years old`,
-                  inline: false,
-                },
-                {
-                  name: `${emojis.favorites} Favorite Legends`,
-                  value: `${emojis.threadMark} \`\`${user_legends}\`\``,
-                  inline: false,
-                },
-                {
-                  name: `${emojis.question} What can you bring to SUN ?`,
-                  value: `${emojis.threadMark} \`\`${user_why}\`\``,
-                  inline: false,
-                },
-                {
-                  name: `${emojis.time} Requested Since`,
-                  value: `${emojis.threadMark} <t:${Math.floor(
-                    Date.now() / 1000,
-                  )}:R>`,
-                  inline: false,
-                },
-              ])
-              .setTimestamp()
-              .setFooter({
-                text: interaction.user.id,
-                iconURL: banners.parfaitIcon,
-              }),
-          ],
-          components: [firstRow, secondRow],
+      const application = new MessageEmbed()
+        .setColor(color.gray)
+        .setTitle(`${emojis.app} Requests to join SUN`)
+        .setAuthor({
+          name: interaction.user.username,
+          iconURL: interaction.user.displayAvatarURL(),
         })
+        .setDescription(` `)
+        .setThumbnail(banners.appResultIcon)
+        .setImage(banners.appResultBanner)
+        .addFields([
+          {
+            name: `${emojis.discord} Discord Profile`,
+            value: `${emojis.threadMark} ${interaction.user}`,
+            inline: true,
+          },
+          {
+            name: `${emojis.id} Smash Code`,
+            value: `${emojis.threadMark} ||\`\`${user_code}\`\`||`,
+            inline: true,
+          },
+          {
+            name: `${emojis.competition} Competitions/Trainings`,
+            value: `${emojis.threadMark} \`\`${user_ct}\`\``,
+            inline: false,
+          },
+          {
+            name: `${emojis.age} Age`,
+            value: `${emojis.threadMark} ||\`\`${user_age}\`\`|| Years old`,
+            inline: false,
+          },
+          {
+            name: `${emojis.favorites} Favorite Legends`,
+            value: `${emojis.threadMark} \`\`${user_legends}\`\``,
+            inline: false,
+          },
+          {
+            name: `${emojis.question} What can you bring to SUN ?`,
+            value: `${emojis.threadMark} \`\`${user_why}\`\``,
+            inline: false,
+          },
+          {
+            name: `${emojis.time} Requested Since`,
+            value: `${emojis.threadMark} <t:${Math.floor(
+              Date.now() / 1000,
+            )}:R>`,
+            inline: false,
+          },
+        ])
+        .setTimestamp()
+        .setFooter({
+          text: interaction.user.id,
+          iconURL: banners.parfaitIcon,
+        });
+
+      const app = await finishChannel
+        .send({ embeds: [application], components: [firstRow, secondRow] })
         .then((msg) => msg.pin());
+      await app.startThread({
+        name: `${interaction.user.username}'s Application`,
+        autoArchiveDuration: 10080,
+        type: "GUILD_PRIVATE_THREAD",
+        reason: `${emojis.app} ${interaction.user.username} Requests to join SUN`,
+      });
 
       async function run() {
         const client = new MongoClient(config.database);
