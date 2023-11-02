@@ -11,10 +11,11 @@
   "tasks": {
     "node .": {
       "name": "Parfait ᴰᴱⱽ",
-      "command": "node . --trace-warnings",
+      "command": "node .",
       "runAtStart": true,
       "preview": {
-        "port": 3007
+        "port": 3020,
+        "prLink": "direct"
       }
     }
   }

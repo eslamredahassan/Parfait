@@ -101,6 +101,44 @@ module.exports = async (client, config) => {
             },
           ],
         },
+        {
+          name: "ask",
+          description: `[Dev] Ask Parfait questions`,
+          options: [
+            {
+              name: "question",
+              description: "Type your question",
+              type: 3, // STRING
+              required: true,
+              min_length: 2,
+              max_length: 365,
+            },
+          ],
+        },
+        {
+          name: "parfait",
+          description: `[Dev] Parfait Options And Settings`,
+          options: [
+            {
+              name: "mode",
+              description: "Mention the member you want to break his snow",
+              required: true,
+              type: 3, // STRING
+              choices: [
+                {
+                  name: "opned",
+                  value: "_opened",
+                  description: "Type your unfreeze reason",
+                },
+                {
+                  name: "closed",
+                  value: "_closed",
+                  description: "Type your unfreeze reason",
+                },
+              ],
+            },
+          ],
+        },
       ]);
       console.log(
         `\x1b[0m`,

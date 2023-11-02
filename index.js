@@ -37,10 +37,12 @@ client.on("ready", async () => {
     config,
   );
   const open = require(`./src/commands/setup/open`)(client, config);
+  const ai = require(`./src/commands/ai`)(client, config);
   const about = require(`./src/commands/about`)(client, config);
   const ping = require(`./src/commands/ping`)(client, config);
   const status = require(`./src/commands/status`)(client, config);
   const close = require(`./src/commands/setup/close`)(client, config);
+  const options = require(`./src/commands/setup/options`)(client, config);
   const maintenance = require(`./src/commands/setup/maintenance`)(
     client,
     config,
