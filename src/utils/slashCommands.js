@@ -42,6 +42,11 @@ module.exports = async (client, config) => {
           type: "CHAT_INPUT",
         },
         {
+          name: "duration",
+          description: `[Dev] Check you frozen time left`,
+          type: "CHAT_INPUT",
+        },
+        {
           name: "echo",
           description: `[Dev] Parfait will send your message`,
           options: [
@@ -70,6 +75,14 @@ module.exports = async (client, config) => {
               description: "Mention the member you want to freeze him",
               type: 6, // MEMBER
               required: true,
+            },
+            {
+              name: "duration",
+              description: "Set the freeze durations in days",
+              type: 4, // MEMBER
+              required: true,
+              min_length: 1,
+              max_length: 3,
             },
             {
               name: "reason",

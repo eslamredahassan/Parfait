@@ -31,6 +31,8 @@ client.on("ready", async () => {
   slashCommands(client, config);
   connect(client, config);
 
+  const expired = require(`./src/events/expired.js`)(client, config);
+  const duration = require(`./src/commands/duration.js`)(client, config);
   // ------ Slash Command ------- //
   const setup_embed = require(`./src/commands/setup/setup_embed`)(
     client,

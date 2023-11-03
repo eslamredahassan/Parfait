@@ -8,7 +8,7 @@ module.exports = async (client) => {
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isCommand()) return;
     if (interaction.commandName === "ask") {
-      await interaction.deferReply();
+      await interaction.deferReply({ ephemeral: false });
       const openai = new OpenAI({ apiKey: process.env.OpenAI_Key });
       const question = interaction.options.getString("question");
 
