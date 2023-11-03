@@ -1,6 +1,9 @@
 const { client } = require("discord.js");
 const OpenAI = require("openai");
 
+const messages = require("../assest/messages.js");
+const fieldsText = require("../assest/fieldsText.js");
+
 module.exports = async (client) => {
   client.on("interactionCreate", async (interaction) => {
     if (!interaction.isCommand()) return;
@@ -17,15 +20,44 @@ module.exports = async (client) => {
       const howOldRandomAnswer =
         howOldQuestion[Math.floor(Math.random() * howOldQuestion.length)];
 
+      const flipACoin = [`**HEADS!** won`, `**TAILS!** won`];
+      const flipACoinResult =
+        flipACoin[Math.floor(Math.random() * flipACoin.length)];
+
       const questionMapping = {
+        //-----------------------------------------| Parfait Chat |---------------------------------------//
         "who created you": "IEgyGamerI created me.",
         "who made you": "IEgyGamerI made me.",
         "what is your creator": "IEgyGamerI created me.",
         "who is your developer": "my developer is IEgyGamerI.",
-        "who are you": "Im Parfait.",
+        "who are you": "I'm Parfait.",
         "how old are you": howOldRandomAnswer,
         "where are you from": "Im from Library World",
         "can i apply to sun": `Yeah of course, go <#1120323307850444820> and press my application button`,
+        //------------------------------------------------------------------------------------------------//
+
+        //-------------------------------------------| FAQ Chat |-----------------------------------------//
+        "how to apply": fieldsText.howToApply,
+        "what is the minimum age": fieldsText.age,
+        "what will happen if I didn't complete the second part of the application?":
+          fieldsText.secondPart,
+        "can i apply while i'm in the cooldown period":
+          fieldsText.applyInCooldown,
+        "can i join sun legends clan without applying": fieldsText.withoutApply,
+        "can i join Sun Legends in-game clan with multiple accounts":
+          fieldsText.multipleAcconts,
+        "can i join other in-game clans with my alt accounts":
+          fieldsText.joinAnotherClan,
+        "what will happen when my application gets accepted?":
+          fieldsText.inPeriodTrial,
+        "what is the trial period": fieldsText.periodTrial,
+        "what should I do in the trial period?": fieldsText.doInPeriod,
+        "what will happen after I finish my trial period?":
+          fieldsText.finishPeriod,
+        //------------------------------------------------------------------------------------------------//
+
+        //------------------------------------------| Tools Chat |----------------------------------------//
+        "flip a coin": flipACoinResult,
         //------------------------------------------------------------------------------------------------//
       };
 
@@ -43,6 +75,7 @@ module.exports = async (client) => {
           //prompt: question,
           messages: [
             { role: "system", content: "You are a helpful assistant." },
+            { role: "system", content: "You are a female assistant." },
             { role: "user", content: question },
           ],
           max_tokens: 1000,

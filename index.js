@@ -42,7 +42,6 @@ client.on("ready", async () => {
   const ping = require(`./src/commands/ping`)(client, config);
   const status = require(`./src/commands/status`)(client, config);
   const close = require(`./src/commands/setup/close`)(client, config);
-  const options = require(`./src/commands/setup/options`)(client, config);
   const maintenance = require(`./src/commands/setup/maintenance`)(
     client,
     config,
