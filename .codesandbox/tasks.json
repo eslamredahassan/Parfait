@@ -14,7 +14,7 @@
       "command": "node .",
       "runAtStart": true,
       "preview": {
-        "port": 3020,
+        "port": 3007,
         "prLink": "direct"
       }
     }

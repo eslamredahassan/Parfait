@@ -7,8 +7,8 @@ const ready = require("./src/utils/ready");
 const antiCrash = require("./src/utils/antiCrash");
 const slashCommands = require("./src/utils/slashCommands");
 const server = require("./src/utils/server");
+const expired = require(`./src/events/expired.js`);
 const logo = require("./src/assest/logo");
-const GuildMemberAdd = require("./src/events/GuildMemberAdd");
 const moment = require("moment");
 //const fs = require("fs");
 
@@ -30,9 +30,8 @@ client.on("ready", async () => {
   ready(client, config);
   slashCommands(client, config);
   connect(client, config);
+  expired(client, config);
 
-  const expired = require(`./src/events/expired.js`)(client, config);
-  const duration = require(`./src/commands/duration.js`)(client, config);
   // ------ Slash Command ------- //
   const setup_embed = require(`./src/commands/setup/setup_embed`)(
     client,
@@ -54,6 +53,7 @@ client.on("ready", async () => {
   const echo = require(`./src/commands/echo`)(client, config);
   const freeze_command = require(`./src/commands/freeze`)(client, config);
   const unfreeze_command = require(`./src/commands/unfreeze`)(client, config);
+  const duration = require(`./src/commands/duration.js`)(client, config);
   // -------------------------------------//
 
   // ------ Buttons Interactions ------- //
@@ -104,4 +104,5 @@ client.on("ready", async () => {
   );
 });
 
+client.login(config.token).catch((error) => console.error(error.message));
 client.login(config.token).catch((error) => console.error(error.message));
