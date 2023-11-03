@@ -54,6 +54,7 @@ module.exports = async (client) => {
         "what should I do in the trial period?": fieldsText.doInPeriod,
         "what will happen after I finish my trial period?":
           fieldsText.finishPeriod,
+        "what will happen when my application gets rejected?": test,
         //------------------------------------------------------------------------------------------------//
 
         //------------------------------------------| Tools Chat |----------------------------------------//
